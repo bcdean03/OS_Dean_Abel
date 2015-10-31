@@ -1,2 +1,2 @@
-__author__ = 'abelamadou'
-sdsss
+__author__ = 'DeanBailey and AbelAmadou'
+print("Got you good you fugger")
