@@ -1,5 +1,5 @@
 __author__ = 'DeanBailey and AbelAmadou'
-print("Got you good you fugger")<<<<<<< HEAD
+print("Got you good you fugger")
 from time import sleep
 from time import clock
 from Queue import Queue
@@ -38,9 +38,3 @@ while True:
 # clock_time = clock()
 # print clock_time
 # print((clock_time+5))
-=======
-print("Got you again fugger")
-def method(a):
-    print(a)
-method("Im in my method")
->>>>>>> origin/master
