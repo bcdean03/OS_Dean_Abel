@@ -6,6 +6,7 @@ from Queue import Queue
 from threading import Thread
 q = Queue(maxsize=10)
 
+
 def driver():
     while True:
         clock_time = clock()
@@ -18,8 +19,10 @@ def driver():
 class HelloWorld:
     def __init__(self, i):
         self.i = i
+
     def hello_world(self):
         return "Hello World " + str(self.i)
+
 
 def put_into_queue(h):
     q.put(h)
@@ -31,7 +34,7 @@ i = 0
 while True:
     hello = HelloWorld(i)
     Thread(target=put_into_queue, args=(hello,)).start()
-    i+=1
+    i += 1
     sleep(.09)
 
 
