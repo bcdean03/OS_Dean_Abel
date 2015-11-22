@@ -8,7 +8,7 @@ while True:
     x = input("x: ")
 
     print "lat: " + str(math.asin(z / R))
-    print "lon: " + str(math.atan(y, x))
+    print "lon: " + str(math.atan2(y, x))
 
 
 
@@ -20,6 +20,6 @@ def from_c_t_c1_back(**c_t_c_set):
     x = c_t_c_set.get("x")
 
     print "lat: " + str(math.asin(z / R))
-    print "lon: " + str(math.atan(y, x))
+    print "lon: " + str(math.atan2(y, x))
 
 from_c_t_c1_back(z=4,R=9,y=8,x=8)
