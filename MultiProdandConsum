@@ -1,0 +1,71 @@
+from Queue import Queue
+from threading import Thread
+from random import randint
+from time import sleep
+
+
+class Producer(Thread):
+    def produce(self):
+        i = randint(0,1)
+        if i == 0:
+            diction["Banana"].put(1)
+        elif i == 1:
+            diction["Cheecken"].put(1)
+
+    def run(self):
+        while True:
+            self.produce()
+            sleep(1)
+
+
+class Consumer(Thread):
+    counter = 0
+
+    def __init__(self, name):
+        Thread.__init__(self)
+        self.name = str(name)
+
+    def consume(self):
+        i = randint(0, 1)
+        if i == 0 and diction["Banana"].qsize() != 0:
+            print("Consume banana (before): " + str(diction["Banana"].qsize())  + " "+
+                  str(diction["Banana"].get()) + " Consume banana (after): " + str(diction["Banana"].qsize()))
+            # print("Consume banana (before): " + str(diction["Banana"].qsize()))
+            # print "Consumer: "+ self.name + " is consuming a banana." + \
+            #     str(diction["Banana"].get())
+            # print("Consume banana (after): " + str(diction["Banana"].qsize()))
+
+        elif i == 1 and diction["Cheecken"].qsize() != 0:
+            print("Consume cheecken (before): " + str(diction["Cheecken"].qsize()) + " " +
+                  str(diction["Cheecken"].get()) + " Consume cheeken (after): " + str(diction["Cheecken"].qsize()))
+            # print("Consume cheecken (before):" + str(diction["Cheecken"].qsize()))
+            # print "Consumer: " + self.name + " is consuming a cheecken." +\
+                # str(diction["Cheecken"].get())
+            # print("Consume cheecken (after): " + str(diction["Cheecken"].qsize()))
+
+    def run(self):
+        while True:
+            self.consume()
+            print()
+            sleep(2)
+
+
+q1 = Queue()
+diction = {"Banana": Queue(maxsize=1),
+           "Cheecken": Queue(maxsize=1)}
+diction1 = {}
+
+# diction["Banana"].put(1)
+
+num_prod = input("How many producers?")
+num_consum = input("How many consumers?")
+for i in range(0, num_prod):
+    Producer().start()
+
+for i in range(0, num_consum):
+    Consumer(i).start()
+
+# while True:
+#     print "Banana:", str(diction["Banana"].qsize())
+#     print "Cheecken:", str(diction["Cheecken"].qsize())
+#     sleep(2)
