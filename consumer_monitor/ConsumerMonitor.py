@@ -1,4 +1,4 @@
-__author__ = 'Dean'
+__author__ = 'Dean, Abel'
 import socket
 
 def main():
