@@ -7,7 +7,8 @@ def main():
     buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
     s = socket.socket()
     s.connect(("192.168.1.141",5002))#request a connection with the listening server
-    s.send("h")
+    list= str(str(consumer_num),str(producer_num),str(buffer_size))
+    s.send(list)
     data = s.recv(1024)
     if data != "received":
         print "Error happened"
