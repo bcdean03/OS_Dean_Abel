@@ -4,7 +4,7 @@ import socket
 
 def main():
 
-    addr =("1",5002)
+    addr =("192.168.1.141",5002)
     sock = socket.socket()
     sock.bind(addr)
     sock.listen(1)
