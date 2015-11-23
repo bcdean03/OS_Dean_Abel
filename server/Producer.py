@@ -5,3 +5,4 @@ from threading import Thread
 class Producer(Thread):
     def run(self):
         print "hello",self.name
+        print "hasdasdasd"
