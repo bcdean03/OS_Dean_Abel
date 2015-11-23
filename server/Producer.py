@@ -4,4 +4,4 @@ from threading import Thread
 
 class Producer(Thread):
     def run(self):
-        print "hello",self.namef
+        print "hello",self.name

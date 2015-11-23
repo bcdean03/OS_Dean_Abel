@@ -1,6 +1,6 @@
 __author__ = 'Dean, Abel'
 import socket
-from producer import Producer
+from Producer import Producer
 
 
 def user_main():
