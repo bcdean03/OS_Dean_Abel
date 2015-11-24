@@ -25,12 +25,8 @@ def main():
     try:
         s = socket.socket()
         s.connect(("192.168.1.141",5002))#request a connection with the listening server
-        list= "%s %s"%(producer_num,buffer_size)
-        s.send(list)
-        # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
-        # data = s.recv(1024)
-        # if not data:
-        # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
+        str_of_list= "%s %s"%(producer_num,buffer_size)
+        s.send(str_of_list)
         data = s.recv(1024)
         if data != "Ready...":
             print "Error happened"
@@ -40,14 +36,10 @@ def main():
         print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
         s.close()
         exit(0)
-    # if data != "Ready...":
-    #     print "Error happened"
     finally:
         print "!!CLOSING!!"
         s.close()
-        print data
-        exit(0)
-    return consumer_num
+        return consumer_num
 
 
 def client_socket(food,recipe_list,c_n):
