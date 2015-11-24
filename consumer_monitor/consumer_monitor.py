@@ -15,14 +15,21 @@ def main():
     producer_num = 10
     buffer_size = 10
 
-    s = socket.socket()
-    s.connect(("192.168.1.141",5002))#request a connection with the listening server
-    list= "%s %s"%(producer_num,buffer_size)
-    s.send(list)
-    # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
-    # data = s.recv(1024)
-    # if not data:
+    # s = socket.socket()
+    # s.connect(("192.168.1.141",5002))#request a connection with the listening server
+    # list= "%s %s"%(producer_num,buffer_size)
+    # s.send(list)
+    # # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
+    # # data = s.recv(1024)
+    # # if not data:
     try:
+        s = socket.socket()
+        s.connect(("192.168.1.141",5002))#request a connection with the listening server
+        list= "%s %s"%(producer_num,buffer_size)
+        s.send(list)
+        # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
+        # data = s.recv(1024)
+        # if not data:
         print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
         data = s.recv(1024)
     except socket.error as error:
