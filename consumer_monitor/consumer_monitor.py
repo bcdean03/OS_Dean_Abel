@@ -30,10 +30,15 @@ def main():
         # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
         # data = s.recv(1024)
         # if not data:
-        print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
+        # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
         data = s.recv(1024)
+        if data != "Ready...":
+            print "Error happened"
+            s.close()
+            exit(0)
     except socket.error as error:
         print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
+        s.close()
         exit(0)
     # if data != "Ready...":
     #     print "Error happened"
