@@ -4,6 +4,7 @@ from producer_thread import Producer
 from Queue import Queue
 from threading import Thread
 global dictionary_food
+from time import sleep
 dictionary_food={}
 
 
@@ -72,10 +73,11 @@ def client_threaded_socket(client, client_address, ingredient_list):
     str = " ".join(ingredient_list)
     print "Sending:",str
     client.send(str)
+    sleep(5)
     test = client.recv(1024)
     if not test:
         print "7"*10
-        client.close()
+        # client.close()
     # elif test=="Done":
     #     client.close()
 
