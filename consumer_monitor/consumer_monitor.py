@@ -71,7 +71,7 @@ def client_socket(food,recipe_list,c_n):
         else:
             update_gui(picture)#finish it later TODO!!!
             lock.acquire()
-            print "Received:->",picture
+            print c_n,"Received:->",picture
             lock.release()
     try:
         print c_n,"Sending:->'Done'"
