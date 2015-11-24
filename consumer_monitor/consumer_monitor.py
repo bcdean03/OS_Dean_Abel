@@ -32,7 +32,7 @@ def client_socket():
     # else:
     print Thread.name,"Received:->",received
     # s.send("Done")
-    sleep(1)
+    # sleep(1)
     s.close()
 
 def consumers(consumer_num):
