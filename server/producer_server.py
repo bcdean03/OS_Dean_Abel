@@ -68,16 +68,12 @@ def start_listening():
 
 def client_threaded_socket(client, client_address, ingredient_list):
     # print "Made connection with client --->",client_address
-
-    # while True:
     str = " ".join(ingredient_list)
     print "Sending:",str
     client.send(str)
-    # sleep(5)
-    test = client.recv(1024)
-    if not test:
-        # print "7"*10
-        client.close()
+    # test = client.recv(1024)
+    # if not test:
+    client.close()
     # if test=="Done":
     #     client.close()
 
@@ -109,7 +105,6 @@ if __name__ == '__main__':
 
     # setup(user_main_socket())
     user_main_socket()
-
     # setup([10, 10])
     # setup([10, 10, 1])
     # print "0:",dictionary_food
