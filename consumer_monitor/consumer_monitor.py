@@ -41,6 +41,10 @@ def client_socket(food,recipe_list,c_n):
     # print c_n,"Sending:->",str_list
     for i in recipe_list:
         s.send(i)
+        ####
+        # CAREFUL COULD HAVE TO DO SOME TYPE OF WAITING TO MAKE SURE THE TCP CONNECTION DOESNT CLOSE BECAUSE ITS WAITING
+        # ON A PRODUCER TO PRODUCE SOMETHING INTO THE QUEUE. IT MIGHT BE TOO LONG.
+        ####
         received = s.recv(1024)
         if not received:
             # print c_n, "Stopped receiving....."

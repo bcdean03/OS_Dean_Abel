@@ -60,8 +60,8 @@ def start_listening():
         print "Waiting for connection..."
         client, client_addr = sock.accept()
         # print "Made connection with client --->",client_addr
-        ingredient_list = convert_input_to_list(client.recv(1024))#Going to receive some byte from the connection with max byte of 1024
-        Thread(target=client_threaded_socket, args=(client, client_addr, ingredient_list)).start()
+        # ingredient_item = client.recv(1024) #Going to receive some byte from the connection with max byte of 1024
+        # Thread(target=client_threaded_socket, args=(client, client_addr, ingredient_item)).start()
     sock.close()
 
 
