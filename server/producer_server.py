@@ -76,7 +76,7 @@ def client_threaded_socket(client, client_address, ingredient_list):
     # sleep(5)
     test = client.recv(1024)
     if not test:
-        print "7"*10
+        # print "7"*10
         client.close()
     # if test=="Done":
     #     client.close()
