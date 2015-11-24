@@ -27,6 +27,7 @@ def main():
         data = s.recv(1024)
     except socket.error as error:
         print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
+        exit(0)
     # if data != "Ready...":
     #     print "Error happened"
     finally:
