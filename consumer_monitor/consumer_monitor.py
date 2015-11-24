@@ -38,7 +38,7 @@ def client_socket(x,c_n):
         # print c_n, "Stopped receiving....."
         pass
     else:
-        print "Sending 'Done'............"
+        print  c_n,"Sending:->'Done'"
         s.send("Done")
         lock.acquire()
         print received
