@@ -22,6 +22,7 @@ def user_main_socket():
         user_info_list = convert_input_to_list(user_info_in)
         # user_info_list = user_info_in.split(' ')
         setup_all(user_info_list)
+        print "!!!Going to send Ready!!!"
         client.send("Ready...")
     finally:
         "Closing socket..."
