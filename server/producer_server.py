@@ -71,19 +71,25 @@ def client_threaded_socket(client, client_address):
     # print "Made connection with client --->",client_address
     # str = " ".join(ingredient_list)
     # print "Sending:",str
-    ingredient_item = client.recv(1024)
-    while ingredient_item!="Done":
-        # ingredient_item = client.recv(1024)
-        client.send(str)
+    try:
         ingredient_item = client.recv(1024)
-        # if not test:
-        # client.close()
-        # if test=="Done":
+        while ingredient_item!="Done":
+            # ingredient_item = client.recv(1024)
+            client.send(ingredient_item)
+            ingredient_item = client.recv(1024)
+            # if not test:
+            # client.close()
+            # if test=="Done":
+            #     print "Closing client_socket.........."
+            #     client.close()
+        # if not ingredient_item:
+        #     print "!!!!!!Socket must be already closed, since not receiving anything anymore!!!!!!"
+        # else:
         #     print "Closing client_socket.........."
         #     client.close()
-    if not ingredient_item:
-        print "!!!!!!Socket must be already closed, since not receiving anything anymore!!!!!!"
-    else:
+    except socket.error as error:
+        print "{"+error+"}","Wasn't able to send 'Done' because lost connection"
+    finally:
         print "Closing client_socket.........."
         client.close()
 

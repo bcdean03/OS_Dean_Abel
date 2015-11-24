@@ -55,23 +55,26 @@ def client_socket(food,recipe_list,c_n):
     s.connect(buffer_server)#request a connection with the listening server
     # print c_n,"Connected to:->",buffer_server
     # print c_n,"Sending:->",str_list
+
+    #Mabey put try catch arround all of this TODO
+    print "Food:->",food,": Recipe_list:->",recipe_list
     for i in recipe_list:
         s.send(i)
         ####
         # CAREFUL COULD HAVE TO DO SOME TYPE OF WAITING TO MAKE SURE THE TCP CONNECTION DOESNT CLOSE BECAUSE ITS WAITING
         # ON A PRODUCER TO PRODUCE SOMETHING INTO THE QUEUE. IT MIGHT BE TOO LONG.
         ####
-        received = s.recv(1024)
-        if not received:
+        picture = s.recv(1024)
+        if not picture:
             # print c_n, "Stopped receiving....."
             continue
         else:
-            update_gui(received)#finish it later TODO!!!
+            update_gui(picture)#finish it later TODO!!!
             lock.acquire()
-            print received
+            print "Received:->",picture
             lock.release()
     try:
-        print  c_n,"Sending:->'Done'"
+        print c_n,"Sending:->'Done'"
         s.send("Done")        # print c_n,"Received:->",received
         s.close()
     except socket.error as error:
