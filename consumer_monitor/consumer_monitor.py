@@ -26,7 +26,7 @@ def main():
     return consumer_num
 
 
-def client_socket(x,c_n):
+def client_socket(food,recipe_list,c_n):
     '''
 
     :param x: client name changing
@@ -34,26 +34,32 @@ def client_socket(x,c_n):
     :return:
     '''
     buffer_server = ("192.168.1.141",5007)
-    str_list = str(x)
 
     s = socket.socket()
     s.connect(buffer_server)#request a connection with the listening server
     # print c_n,"Connected to:->",buffer_server
     # print c_n,"Sending:->",str_list
-    s.send(str_list)
-    received = s.recv(1024)
-    if not received:
-        # print c_n, "Stopped receiving....."
-        pass
-    else:
+    for i in recipe_list:
+        s.send(i)
+        received = s.recv(1024)
+        if not received:
+            # print c_n, "Stopped receiving....."
+            continue
+        else:
+            update_gui(received)#finish it later TODO!!!
+            lock.acquire()
+            print received
+            lock.release()
+    try:
         print  c_n,"Sending:->'Done'"
-        s.send("Done")
-        lock.acquire()
-        print received
-        lock.release()
-        # print c_n,"Received:->",received
-    s.close()
+        s.send("Done")        # print c_n,"Received:->",received
+        s.close()
+    except socket.error as error:
+        print "{"+error+"}","Wasn't able to send 'Done' because lost connection"
 
+
+def update_gui(ingredient):
+    pass
 
 def create_recipe_dictionary():
     goodies_dictionary = {"Banana Bread": ["Banana", "Bread"],
@@ -70,12 +76,12 @@ def get_food_and_recipe(goodies):
 def consumers(consumer_num):
     food, recipe = get_food_and_recipe(create_recipe_dictionary())
 
-    x = 0
+    id = 0
     for i in xrange(int(consumer_num)):
         # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
-        Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
+        Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
         sleep(.01)
-        x += 1
+        id += 1
 
 if __name__ == '__main__':
     consumers(main())
