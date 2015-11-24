@@ -81,7 +81,8 @@ def client_threaded_socket(client, client_address):
             # picture = getPicture()
             # print "Sending:->",picture
             lock.release()
-            client.send(ingredient_item)
+            p_ingredient_item = dictionary_food[ingredient_item].get()
+            client.send(p_ingredient_item)
             ingredient_item = client.recv(1024)
             # if not test:
             # client.close()
