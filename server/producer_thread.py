@@ -1,13 +1,21 @@
 __author__ = 'Dean, Abel'
 from threading import Thread
 from Queue import Queue
-# from time import sleep
+from producer_server import dictionary_food
+from random import choice, randint
+from time import sleep
 
+# from time import sleep
 q = Queue()
 
 class Producer(Thread):
+
     def run(self):
-        pass
+        while True:
+            ingredient = choice(["Bread", "Apple", "Banana"])
+            dictionary_food[ingredient].put(self.name+": "+ingredient)
+            # dictionary_food[choice(["Bread", "Apple", "Banana"])].put()
+            sleep(randint(0,5))
         # print self.name
         # while q.qsize() != 0:
         #     print str(q.get()) + " " + self.name
