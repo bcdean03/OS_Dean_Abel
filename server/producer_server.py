@@ -59,7 +59,7 @@ def start_listening():
     while True:
         print "Waiting for connection..."
         client, client_addr = sock.accept()
-        print "Made connection with client --->",client_addr
+        # print "Made connection with client --->",client_addr
         ingredient_list = convert_input_to_list(client.recv(1024))#Going to receive some byte from the connection with max byte of 1024
         Thread(target=client_threaded_socket, args=(client, client_addr, ingredient_list)).start()
     sock.close()
@@ -69,12 +69,13 @@ def start_listening():
 def client_threaded_socket(client, client_address, ingredient_list):
     # print "Made connection with client --->",client_address
     str = " ".join(ingredient_list)
-    print "Sending:",str
+    # print "Sending:",str
     client.send(str)
     test = client.recv(1024)
     # if not test:
     # client.close()
     if test=="Done":
+        print "Closing client_socket.........."
         client.close()
 
         # for synchronization and removing from the list later implementation.... TODO
@@ -112,5 +113,5 @@ if __name__ == '__main__':
     # print "3:",dictionary_food
     # print "len->",len(dictionary_food)
     # dictionary_food["apple"].put(5)
-    for i in dictionary_food.values():
-        print i.maxsize
+    # for i in dictionary_food.values():
+    #     print i.maxsize
