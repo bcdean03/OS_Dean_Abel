@@ -81,7 +81,7 @@ def client_threaded_socket(client, client_address, ingredient_list):
         # for synchronization and removing from the list later implementation.... TODO
         # for i in ingredient_list:
 
-
+        0
 
         #the information we send back is the pictures of the food to make banana bread
         # print "Sending:", str(data),"to(",client.name+")"
