@@ -4,9 +4,12 @@ from random import randint
 from threading import Thread
 from time import sleep
 def main():
-    consumer_num = raw_input("How many consumers do you want?")
-    producer_num = raw_input("How many producers do you want to produce?")
-    buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
+    # consumer_num = raw_input("How many consumers do you want?")
+    # producer_num = raw_input("How many producers do you want to produce?")
+    # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
+    consumer_num =7
+    producer_num = 10
+    buffer_size = 10
     s = socket.socket()
     s.connect(("192.168.1.141",5002))#request a connection with the listening server
     list= "%s %s"%(producer_num,buffer_size)
