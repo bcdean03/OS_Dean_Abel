@@ -62,26 +62,34 @@ def start_listening():
         # print "Made connection with client --->",client_addr
         # ingredient_item = client.recv(1024) #Going to receive some byte from the connection with max byte of 1024
         # Thread(target=client_threaded_socket, args=(client, client_addr, ingredient_item)).start()
+        Thread(target=client_threaded_socket, args=(client, client_addr)).start()
     sock.close()
 
 
 
-def client_threaded_socket(client, client_address, ingredient_list):
+def client_threaded_socket(client, client_address):
     # print "Made connection with client --->",client_address
-    str = " ".join(ingredient_list)
+    # str = " ".join(ingredient_list)
     # print "Sending:",str
-    client.send(str)
-    test = client.recv(1024)
-    # if not test:
-    # client.close()
-    if test=="Done":
+    ingredient_item = client.recv(1024)
+    while ingredient_item!="Done":
+        # ingredient_item = client.recv(1024)
+        client.send(str)
+        ingredient_item = client.recv(1024)
+        # if not test:
+        # client.close()
+        # if test=="Done":
+        #     print "Closing client_socket.........."
+        #     client.close()
+    if not ingredient_item:
+        print "!!!!!!Socket must be already closed, since not receiving anything anymore!!!!!!"
+    else:
         print "Closing client_socket.........."
         client.close()
 
+
         # for synchronization and removing from the list later implementation.... TODO
         # for i in ingredient_list:
-
-        0
 
         #the information we send back is the pictures of the food to make banana bread
         # print "Sending:", str(data),"to(",client.name+")"
