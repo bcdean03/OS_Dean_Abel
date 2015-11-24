@@ -2,10 +2,11 @@ __author__ = 'Dean, Abel'
 import socket
 from producer_thread import Producer
 from Queue import Queue
-from threading import Thread
+from threading import Thread,RLock
 global dictionary_food
 from time import sleep
 dictionary_food={}
+lock = RLock()
 
 
 
@@ -75,6 +76,11 @@ def client_threaded_socket(client, client_address):
         ingredient_item = client.recv(1024)
         while ingredient_item!="Done":
             # ingredient_item = client.recv(1024)
+            lock.acquire()
+            print "Received:->",ingredient_item
+            # picture = getPicture()
+            # print "Sending:->",picture
+            lock.release()
             client.send(ingredient_item)
             ingredient_item = client.recv(1024)
             # if not test:
