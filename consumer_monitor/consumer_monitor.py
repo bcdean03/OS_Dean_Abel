@@ -38,7 +38,10 @@ def client_socket():
 def consumers(consumer_num):
     x = 0
     for i in xrange(int(consumer_num)):
-        Thread(target=client_socket).setName("Client_{}".format(x)).start()
+        Thread(target=client_socket, name="Client_{}".format(x)).start()
+        # a= Thread(target=client_socket)
+        # a.setName("Client_{}".format(x))
+        # a.start()
         x += 1
 
 
