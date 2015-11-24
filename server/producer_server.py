@@ -1,6 +1,10 @@
 __author__ = 'Dean, Abel'
 import socket
-from Producer import Producer
+from producer_thread import Producer
+from Queue import Queue
+global dictionary_food
+dictionary_food={}
+
 
 
 def user_main():
@@ -23,11 +27,27 @@ def user_main():
         client.close()
         return user_info_list
 
+def setup_bf(bf_size):
+    list = ["apple","rice","banana"]
+    global dictionary_food
+    # print "1:",dictionary_food
+
+    for i in list:
+        # dictionary_food.update({i:Queue(maxsize=bf_size)})
+        # a =Queue(maxsize=bf_size)
+        # a.put(10)
+        # dictionary_food[i]=a
+        dictionary_food[i]=Queue(maxsize=bf_size)
+
+    # print "2:",dictionary_food
+
+
+
 
 def setup(user_info):
     if len(user_info) == 2:
         num_producers = int(user_info[0])
-        buffer_size = int(user_info[1])
+        setup_bf(int(user_info[1]))
         for i in xrange(0, num_producers):
             Producer(name="Producer_{}".format(i+1)).start()
             # print(i)
@@ -36,9 +56,21 @@ def setup(user_info):
         exit(0)
 
 if __name__ == '__main__':
-    setup(user_main())
+    global dictionary_food
+
+    # setup(user_main())
     # setup([10, 10])
     # setup([10, 10, 1])
+    print "0:",dictionary_food
+    setup_bf(3)
+    print "3:",dictionary_food
+    print "len->",len(dictionary_food)
+    a = dictionary_food["apple"]
+    print a
+    print type(dictionary_food["apple"])
+    for _ in dictionary_food:
+        print dictionary_food.values()[0].qsize()
+
 
 
 

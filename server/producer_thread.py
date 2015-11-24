@@ -6,8 +6,9 @@ from threading import Thread
 # q = Queue()
 class Producer(Thread):
     def run(self):
+        print self.name
         # while q.qsize() != 0:
-            print str(q.get()) + " " + self.name
+        #     print str(q.get()) + " " + self.name
 
 
 # def wait_to_put():
