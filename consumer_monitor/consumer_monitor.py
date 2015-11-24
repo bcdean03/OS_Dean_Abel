@@ -20,14 +20,16 @@ def main():
 
 def client_socket():
     buffer_server = ("192.168.1.141",5007)
-    str = str(randint(0,10))
+    str_list = str(randint(0,10))
     s = socket.socket()
     s.connect(buffer_server)#request a connection with the listening server
     print Thread.name,"Connected to:->",buffer_server
-    print Thread.name,"Sending:->",str
-    s.send(str)
+    print Thread.name,"Sending:->",str_list
+    s.send(str_list)
     received = s.recv(1024)
     print Thread.name,"Received:->",received
+    s.send("Done")
+    sleep(1)
     s.close()
 
 def consumers(consumer_num):
