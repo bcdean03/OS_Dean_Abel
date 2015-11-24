@@ -73,7 +73,9 @@ def client_threaded_socket(client, client_address, ingredient_list):
     print "Sending:",str
     client.send(str)
     test = client.recv(1024)
-    if test=="Done":
+    if not test:
+        print "7"*10
+    elif test=="Done":
         client.close()
 
         # for synchronization and removing from the list later implementation.... TODO
