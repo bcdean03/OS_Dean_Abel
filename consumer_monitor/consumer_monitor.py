@@ -59,7 +59,11 @@ def client_socket(food,recipe_list,c_n):
     #Mabey put try catch arround all of this TODO
     print "Food:->",food,": Recipe_list:->",recipe_list
     for i in recipe_list:
+        lock.acquire()
+        print c_n,"Sending:->",i
+        lock.release()
         s.send(i)
+
         ####
         # CAREFUL COULD HAVE TO DO SOME TYPE OF WAITING TO MAKE SURE THE TCP CONNECTION DOESNT CLOSE BECAUSE ITS WAITING
         # ON A PRODUCER TO PRODUCE SOMETHING INTO THE QUEUE. IT MIGHT BE TOO LONG.
