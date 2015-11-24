@@ -19,7 +19,9 @@ def main():
     s.connect(("192.168.1.141",5002))#request a connection with the listening server
     list= "%s %s"%(producer_num,buffer_size)
     s.send(list)
+    print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
     data = s.recv(1024)
+    print data, "Got passed without receiving anyhting"
     if data != "Ready...":
         print "Error happened"
     s.close()
