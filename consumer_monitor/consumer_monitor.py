@@ -10,7 +10,7 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num =10000
+    consumer_num =20000
     producer_num = 10
     buffer_size = 10
     s = socket.socket()
@@ -28,27 +28,50 @@ def client_socket(x):
     buffer_server = ("192.168.1.141",5007)
     # str_list = str(randint(0,10))
     str_list = str(x)
+
     # while True:
-    try:
-        s = socket.socket()
-        s.connect(buffer_server)#request a connection with the listening server
-        #print Thread.name,"Connected to:->",buffer_server
-        #print Thread.name,"Sending:->",str_list
-        s.send(str_list)
-        received = s.recv(1024)
-        if not received:
-            #print "*"*40
-            pass
-        else:
-            lock.acquire()
-            print received
-            sleep(.001)
-            lock.release()
-            # print Thread.name,"Received:->",received
-        # break
-    except socket.error as error:
-        s.reconnect()
-        s.retry_action()
+    #
+    #     try:
+    #         s = socket.socket()
+    #         s.connect(buffer_server)#request a connection with the listening server
+    #         #print Thread.name,"Connected to:->",buffer_server
+    #         #print Thread.name,"Sending:->",str_list
+    #         s.send(str_list)
+    #         received = s.recv(1024)
+    #         if not received:
+    #             #print "*"*40
+    #             pass
+    #         else:
+    #             lock.acquire()
+    #             print received
+    #             # sleep(.001)
+    #             lock.release()
+    #             break
+    #             # print Thread.name,"Received:->",received
+    #         # break
+    #     except socket.error as error:
+    #         print("RRRRRRRRRRRREEEEEEEEEEEEEEEECCCCCCCCCCCCCCCCOOOOOOOOOOOOOOOOONNNNNNNNNNNNEEEEEEEECTTTTTTTTTT")
+    #         # s.reconnect()
+    #         # s.retry_action()
+
+    s = socket.socket()
+    s.connect(buffer_server)#request a connection with the listening server
+    #print Thread.name,"Connected to:->",buffer_server
+    #print Thread.name,"Sending:->",str_list
+
+
+    s.send(str_list)
+    received = s.recv(1024)
+    if not received:
+        #print "*"*40
+        pass
+    else:
+        lock.acquire()
+        print received
+        # sleep(.001)
+        lock.release()
+        # print Thread.name,"Received:->",received
+
 
     # s.send("Done")
     # sleep(1)
@@ -59,6 +82,7 @@ def consumers(consumer_num):
     # global x
     for i in xrange(int(consumer_num)):
         Thread(target=client_socket, args=(x,),name="Client_{}".format(x)).start()
+        sleep(.01)
         # a= Thread(target=client_socket)
         # a.setName("Client_{}".format(x))
         # a.start()
