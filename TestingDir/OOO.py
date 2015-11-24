@@ -6,7 +6,7 @@ from Queue import Queue
 from threading import Thread
 
 q = Queue(maxsize=10)
-
+print q.maxsize
 
 def driver():
     while True:

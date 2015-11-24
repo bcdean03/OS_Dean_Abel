@@ -46,13 +46,14 @@ class Consumer(Thread):
     def run(self):
         while True:
             self.consume()
-            print()
+            # print()
             sleep(2)
 
 
 q1 = Queue()
-diction = {"Banana": Queue(maxsize=1),
-           "Cheecken": Queue(maxsize=1)}
+diction = {"Banana": Queue(maxsize=10),
+           "Cheecken":Queue(maxsize=10)}
+print type(diction.values()[0])
 diction1 = {}
 
 # diction["Banana"].put(1)

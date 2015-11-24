@@ -1,9 +1,10 @@
 __author__ = 'Dean, Abel'
 from threading import Thread
-# from Queue import Queue
+from Queue import Queue
 # from time import sleep
-#
-# q = Queue()
+
+q = Queue()
+
 class Producer(Thread):
     def run(self):
         print self.name
