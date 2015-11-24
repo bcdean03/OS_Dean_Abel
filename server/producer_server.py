@@ -27,8 +27,9 @@ def user_main_socket():
     finally:
         "Closing socket..."
         sock.close()
-        client.close()
+        # client.close()
         # return user_info_list
+        start_listening()
 
 
 def setup_bf(bf_size):
@@ -42,7 +43,7 @@ def setup_bf(bf_size):
         # a.put(10)
         # dictionary_food[i]=a
         dictionary_food[i]= Queue(maxsize=bf_size)
-    start_listening()
+    # start_listening()
 
 
 def convert_input_to_list(input_string):
@@ -71,6 +72,9 @@ def client_threaded_socket(client, client_address, ingredient_list):
     str = " ".join(ingredient_list)
     print "Sending:",str
     client.send(str)
+    test = client.recv(1024)
+    if len(test) > 0:
+        client.close()
 
         # for synchronization and removing from the list later implementation.... TODO
         # for i in ingredient_list:
@@ -81,7 +85,7 @@ def client_threaded_socket(client, client_address, ingredient_list):
         # print "Sending:", str(data),"to(",client.name+")"
         # client.send(data)
 
-    client.close()
+    # client.close()
 
 
 def setup_all(user_info):

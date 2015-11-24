@@ -7,7 +7,8 @@ q = Queue()
 
 class Producer(Thread):
     def run(self):
-        print self.name
+        pass
+        # print self.name
         # while q.qsize() != 0:
         #     print str(q.get()) + " " + self.name
 
