@@ -45,7 +45,7 @@ def main():
     finally:
         print "!!CLOSING!!"
         s.close()
-    print "DONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+        exit(0)
     return consumer_num
 
 
