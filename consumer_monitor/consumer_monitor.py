@@ -1,6 +1,6 @@
 __author__ = 'Dean, Abel'
 import socket
-from random import randint
+from random import choice
 from threading import *
 from time import sleep
 
@@ -56,3 +56,11 @@ def consumers(consumer_num):
 if __name__ == '__main__':
     consumers(main())
     # consumers(10)
+
+    # d = {"a":[1,2],"b":[2,3,5]}
+    # k= choice(d.keys())
+    # v=d[k]
+    # print k,v
+
+
+
