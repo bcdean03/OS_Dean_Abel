@@ -45,6 +45,7 @@ def main():
     finally:
         print "!!CLOSING!!"
         s.close()
+        print data
         exit(0)
     return consumer_num
 
