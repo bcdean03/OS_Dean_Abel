@@ -1,15 +1,16 @@
 __author__ = 'Dean, Abel'
 import socket
 from random import randint
-from threading import Thread
+from threading import *
 from time import sleep
-global x
-x=0
+# global x
+# x=0
+lock = RLock()
 def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num =10
+    consumer_num =10000
     producer_num = 10
     buffer_size = 10
     s = socket.socket()
@@ -23,7 +24,7 @@ def main():
     return consumer_num
 
 
-def client_socket():
+def client_socket(x):
     buffer_server = ("192.168.1.141",5007)
     # str_list = str(randint(0,10))
     str_list = str(x)
@@ -39,7 +40,10 @@ def client_socket():
             #print "*"*40
             pass
         else:
+            lock.acquire()
             print received
+            sleep(.001)
+            lock.release()
             # print Thread.name,"Received:->",received
         # break
     except socket.error as error:
@@ -51,10 +55,10 @@ def client_socket():
     s.close()
 
 def consumers(consumer_num):
-    # x = 0
-    global x
+    x = 0
+    # global x
     for i in xrange(int(consumer_num)):
-        Thread(target=client_socket, name="Client_{}".format(x)).start()
+        Thread(target=client_socket, args=(x,),name="Client_{}".format(x)).start()
         # a= Thread(target=client_socket)
         # a.setName("Client_{}".format(x))
         # a.start()
