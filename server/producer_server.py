@@ -16,7 +16,7 @@ def user_main_socket():
         sock = socket.socket()
         sock.bind(addr)
         sock.listen(1)
-        print "Waiting for connection..."
+        print "Waiting for connection first user..."
         client,client_addr = sock.accept()
         print "Made connection with client --->",client_addr
         user_info_in = client.recv(1024)
@@ -58,7 +58,7 @@ def start_listening():
     sock.bind(addr)
     sock.listen(100)
     while True:
-        print "Waiting for connection..."
+        print "Waiting for connection from clients..."
         client, client_addr = sock.accept()
         # print "Made connection with client --->",client_addr
         # ingredient_item = client.recv(1024) #Going to receive some byte from the connection with max byte of 1024
