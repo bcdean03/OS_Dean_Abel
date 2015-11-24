@@ -77,7 +77,7 @@ def client_threaded_socket(client, client_address):
         while ingredient_item!="Done":
             # ingredient_item = client.recv(1024)
             lock.acquire()
-            print "Received:->",ingredient_item
+            print"Received:->",ingredient_item
             # picture = getPicture()
             # print "Sending:->",picture
             lock.release()
@@ -96,7 +96,7 @@ def client_threaded_socket(client, client_address):
     except socket.error as error:
         print "{"+error+"}","Wasn't able to send 'Done' because lost connection"
     finally:
-        print "Closing client_socket.........."
+        print "Closing client_socket..."
         client.close()
 
 
