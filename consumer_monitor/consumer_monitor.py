@@ -27,13 +27,13 @@ def client_socket():
     print Thread.name,"Sending:->",str_list
     s.send(str_list)
     received = s.recv(1024)
-    # if not received:
-    #     print "*"*40
-    # else:
-    print Thread.name,"Received:->",received
+    if not received:
+        print "*"*40
+    else:
+        print Thread.name,"Received:->",received
     # s.send("Done")
     # sleep(1)
-    s.close()
+        s.close()
 
 def consumers(consumer_num):
     x = 0
