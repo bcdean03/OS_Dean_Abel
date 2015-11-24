@@ -30,17 +30,19 @@ def client_socket(x,c_n):
 
     s = socket.socket()
     s.connect(buffer_server)#request a connection with the listening server
-    print c_n,"Connected to:->",buffer_server
-    print c_n,"Sending:->",str_list
+    # print c_n,"Connected to:->",buffer_server
+    # print c_n,"Sending:->",str_list
     s.send(str_list)
     received = s.recv(1024)
     if not received:
-        print c_n, "Stopped receiving....."
+        # print c_n, "Stopped receiving....."
+        pass
     else:
+        s.send("Done")
         lock.acquire()
         print received
         lock.release()
-        print c_n,"Received:->",received
+        # print c_n,"Received:->",received
     s.close()
 
 def consumers(consumer_num):
@@ -51,5 +53,5 @@ def consumers(consumer_num):
         x += 1
 
 if __name__ == '__main__':
-    # consumers(main())
-    consumers(10)
+    consumers(main())
+    # consumers(10)
