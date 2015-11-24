@@ -23,8 +23,8 @@ def client_socket():
     str_list = str(randint(0,10))
     s = socket.socket()
     s.connect(buffer_server)#request a connection with the listening server
-    print Thread.name,"Connected to:->",buffer_server
-    print Thread.name,"Sending:->",str_list
+    print Thread.getName(),"Connected to:->",buffer_server
+    print Thread.getName(),"Sending:->",str_list
     s.send(str_list)
     received = s.recv(1024)
     if not received:
