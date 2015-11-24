@@ -37,7 +37,7 @@ def setup_bf(bf_size):
         # a =Queue(maxsize=bf_size)
         # a.put(10)
         # dictionary_food[i]=a
-        dictionary_food[i]=Queue(maxsize=bf_size)
+        dictionary_food[i]= Queue(maxsize=bf_size)
 
     # print "2:",dictionary_food
 
@@ -56,20 +56,20 @@ def setup(user_info):
         exit(0)
 
 if __name__ == '__main__':
-    global dictionary_food
+    # global dictionary_food
 
     # setup(user_main())
+
+
     # setup([10, 10])
     # setup([10, 10, 1])
     print "0:",dictionary_food
     setup_bf(3)
     print "3:",dictionary_food
     print "len->",len(dictionary_food)
-    a = dictionary_food["apple"]
-    print a
-    print type(dictionary_food["apple"])
-    for _ in dictionary_food:
-        print dictionary_food.values()[0].qsize()
+    dictionary_food["apple"].put(5)
+    for i in dictionary_food.values():
+        print i.qsize()
 
 
 
