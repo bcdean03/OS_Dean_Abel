@@ -57,7 +57,7 @@ def client_socket(food,recipe_list,c_n):
     # print c_n,"Sending:->",str_list
 
     #Mabey put try catch arround all of this TODO
-    print "Food:->",food,": Recipe_list:->",recipe_list
+    print c_n,"Food:->",food,": Recipe_list:->",recipe_list
     for i in recipe_list:
         lock.acquire()
         print c_n,"Sending:->",i
