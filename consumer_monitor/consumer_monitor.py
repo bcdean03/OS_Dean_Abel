@@ -119,8 +119,14 @@ def consumers(consumer_num):
     # try:
     for i in xrange(int(consumer_num)):
         # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
-        Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
-        sleep(.01)
+        try:
+            Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
+            sleep(.01)
+        except Exception as e:
+            print e
+            exit(0)
+        # Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
+        # sleep(.01)
         id += 1
     print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
     # except Exception:
