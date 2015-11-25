@@ -11,8 +11,8 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 1
-    producer_num = 1
+    consumer_num = 5
+    producer_num = 2
     buffer_size = 1
 
     # s = socket.socket()
@@ -105,18 +105,18 @@ def create_recipe_dictionary():
     # goodies_dictionary = {"Banana Bread": ["Banana", "Bread"],
     #                       "Apple Bread": ["Apple", "Bread"]} #"Bread", "Apple", "Banana"
     goodies_dictionary = {
-    "Banana Bread":["Salt","Flour","Eggs","Sugar","Banana","Baking Soda","Butter","Yeast","Water"],
-    "Apple Bread":["Salt","Flour","Eggs","Sugar","Apple","Baking Soda","Butter","Yeast","Water"],
-    "Raisin Bread":["Salt","Flour","Eggs","Sugar","Raisin","Baking Soda","Butter","Yeast","Water"],
-    "Pumpkin Bread":["Salt","Flour","Eggs","Sugar","Pumpkin","Baking Soda","Butter","Yeast","Water"],
-    "Wheat Bread":["Salt","Eggs","Sugar","Wheat Flour","Baking Soda","Butter","Yeast","Water"],
-    "Honey Bread":["Salt","Flour","Eggs","Sugar","Honey","Baking Soda","Butter","Yeast","Water"],
-    "Chocolate Chip Bread":["Salt","Flour","Eggs","Sugar","Chocolate Chips","Baking Soda","Butter","Yeast","Water"],
-    "Cinnamon Bread":["Salt","Flour","Eggs","Sugar","Cinnamon","Baking Soda","Butter","Yeast","Water"],
-    "Pizza":["Salt","Flour","Eggs","Yeast","Water","Oil","Pepperoni","Sauce","Cheese"],
-    "Mac and Cheese":["Cheese","Milk","Noodles","Water"],
-    "Cheese burger":["Cheese","Hamburger","Lettuce"],
-    "Spaghetti":["Cheese","Noodles","Hamburger","Sauce"]}
+    "Banana Bread":["Banana","Eggs","Salt","Flour","Sugar","Baking Soda","Butter","Yeast","Water"],
+    "Apple Bread":["Apple","Baking Soda","Salt","Flour","Eggs","Sugar","Butter","Yeast","Water"],
+    "Raisin Bread":["Raisin","Sugar","Salt","Flour","Eggs","Baking Soda","Butter","Yeast","Water"],
+    "Pumpkin Bread":["Pumpkin","Butter","Salt","Flour","Eggs","Sugar","Baking Soda","Yeast","Water"],
+    "Wheat Bread":["Wheat Flour","Yeast","Salt","Eggs","Sugar","Baking Soda","Butter","Water"],
+    "Honey Bread":["Honey","Salt","Flour","Eggs","Sugar","Baking Soda","Butter","Yeast","Water"],
+    "Chocolate Chip Bread":["Chocolate Chips","Eggs","Salt","Flour","Sugar","Baking Soda","Butter","Yeast","Water"],
+    "Cinnamon Bread":["Cinnamon","Water","Salt","Flour","Eggs","Sugar","Baking Soda","Butter","Yeast"],
+    "Pizza":["Pepperoni","Salt","Flour","Eggs","Yeast","Water","Oil","Sauce","Cheese"],
+    "Mac and Cheese":["Cheese","Noodles","Milk","Water"],
+    "Cheese burger":["Hamburger","Cheese","Lettuce"],
+    "Spaghetti":["Noodles","Cheese","Hamburger","Sauce"]}
     return goodies_dictionary
 
 
