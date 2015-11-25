@@ -61,6 +61,8 @@ def client_socket(food,recipe_list,c_n):
             break
         except socket.error as error:
             print "Attempting to reconnect"
+            s.close()
+            s=socket.socket()
             counter +=1
     # print c_n,"Connected to:->",buffer_server
     # print c_n,"Sending:->",str_list
