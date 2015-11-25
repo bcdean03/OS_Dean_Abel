@@ -32,7 +32,7 @@ class Producer(Thread):
             # elif self.dictionary_food[ingredient].qsize() == self.dictionary_food[ingredient].maxsize:
             #     sleep(randint(0,5))
             # print ingredient
-
+            print self.name,":->",ingredient
             # self.dictionary_food[ingredient].put(ingredient)
 
             # dictionary_food[choice(["Bread", "Apple", "Banana"])].put()
