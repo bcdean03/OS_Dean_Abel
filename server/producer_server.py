@@ -129,17 +129,22 @@ def setup_all(user_info):
         setup_bf(int(user_info[1]))
         list_of_prods = []
         print "MAKING",num_producers,"PRODUCERS!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        for i in xrange(0, num_producers):
-            try:
-                Producer(dictionary_food,"Producer_{}".format(i+1)).start()
-                # sleep(.01)
-            except Exception as e:
-                print "Exception:",e
-                print "Cant handle that many producers... Too poor to pay them all!"
-                print "Not enough resources told consumers and producers. Lower producers!"
-                print "Exit!!!!!!!!!!!!"
-                # raise SystemExit(0)
-                exit(0)
+        if num_producers > 500:
+            print "Too many producers, System cant handle."
+            print "Exiting... Try again."
+            exit(0)
+        else:
+            for i in xrange(0, num_producers):
+                try:
+                    Producer(dictionary_food,"Producer_{}".format(i+1)).start()
+                    # sleep(.01)
+                except Exception as e:
+                    print "Exception:",e
+                    print "Cant handle that many producers... Too poor to pay them all!"
+                    print "Not enough resources told consumers and producers. Lower producers!"
+                    print "Exit!!!!!!!!!!!!"
+                    # raise SystemExit(0)
+                    exit(0)
             # Producer(dictionary_food,name="Producer_{}".format(i+1)).start()
             # print(i)
     else:
