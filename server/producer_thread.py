@@ -18,10 +18,7 @@ class Producer(Thread):
     def run(self):
         while True:
             # global dictionary_food
-            ingredient = choice(["Apple", "Banana", "Bread", "Salt", "Flour", "Cinnamon", "Pepperoni", "Oil",
-            "Eggs", "Sugar", "Raisin", "Baking Soda", "Butter", "Yeast", "Water",
-            "Banana", "Apple", "Pumpkin", "Wheat Flour", "Honey", "Chocolate Chips",
-            "Milk", "Noodles", "Hamburger", "Lettuce", "Cheese", "Hamburger", "Sauce"])
+            ingredient = choice(self.dictionary_food.keys())
             # print "INGREEEEEEEEEEEEEEEEEEEEEEEDIENT:", ingredient
             # lock.acquire()
 
