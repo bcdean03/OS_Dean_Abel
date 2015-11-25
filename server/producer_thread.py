@@ -1,6 +1,6 @@
 __author__ = 'Dean, Abel'
-from threading import Thread
-from Queue import Queue
+# from threading import Thread
+# from Queue import Queue
 from producer_server import *
 from random import choice, randint
 from time import sleep
