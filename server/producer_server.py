@@ -12,7 +12,7 @@ lock = RLock()
 
 def user_main_socket():
     # addr= ("192.168.1.141", 5002)
-    addr= ("192.168.1.141", 5002)
+    addr= ("192.168.1.193", 5002)
     sock = socket.socket()
     sock.bind(addr)
     sock.listen(1)
@@ -53,7 +53,7 @@ def convert_input_to_list(input_string):
 
 def start_listening():
     # addr= ("192.168.1.141", 5007)
-    addr= ("192.168.1.141", 5007)
+    addr= ("192.168.1.193", 5007)
     sock = socket.socket()
     sock.bind(addr)
     sock.listen(1000)
