@@ -120,6 +120,7 @@ def setup_all(user_info):
     if len(user_info) == 2:
         num_producers = int(user_info[0])
         setup_bf(int(user_info[1]))
+        print "MAKING",num_producers,"PRODUCERS!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         for i in xrange(0, num_producers):
             Producer(dictionary_food,"Producer_{}".format(i+1)).start()
             sleep(.01)
@@ -128,6 +129,7 @@ def setup_all(user_info):
     else:
         print("System exit... Incorrect data")
         exit(0)
+    print "PRODUCERS ARE DONE"
 
 if __name__ == '__main__':
     # global dictionary_food
