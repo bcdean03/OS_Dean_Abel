@@ -77,13 +77,13 @@ def client_threaded_socket(client, client_address):
         while ingredient_item!="Done":
             # ingredient_item = client.recv(1024)
             lock.acquire()
-            print"Received:->",ingredient_item
+            print">>>> Requested item picture:->",ingredient_item
             # picture = getPicture()
             # print "Sending:->",picture
             lock.release()
             p_ingredient_item = dictionary_food[ingredient_item].get()
             lock.acquire()
-            print "Sending:->",p_ingredient_item
+            print "<<<< Sending picture:->",p_ingredient_item
             lock.release()
             client.send(p_ingredient_item)
 
