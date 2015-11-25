@@ -55,7 +55,6 @@ def client_socket(food,recipe_list,c_n):
     buffer_server = ("192.168.1.141",5007)
 
     s = socket.socket()
-    counter = 0
     while True:
         try:
             s.connect(buffer_server)#request a connection with the listening server
@@ -64,13 +63,13 @@ def client_socket(food,recipe_list,c_n):
             print "Attempting to reconnect"
             s.close()
             s=socket.socket()
-            counter +=1
     # print c_n,"Connected to:->",buffer_server
     # print c_n,"Sending:->",str_list
-    if counter == 4:
-        print "!"*1000
+
     #Mabey put try catch arround all of this TODO
+    lock.acquire()
     print c_n,"Food:->",food,": Recipe_list:->",recipe_list
+    lock.release()
     for i in recipe_list:
         lock.acquire()
         print ">>>>",c_n,"Sending:->",i
