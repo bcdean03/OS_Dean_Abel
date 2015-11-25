@@ -90,7 +90,7 @@ def update_gui(ingredient):
 
 def create_recipe_dictionary():
     goodies_dictionary = {"Banana Bread": ["Banana", "Bread"],
-                          "Apple Bread": ["Apple", "Bread"]}
+                          "Apple Bread": ["Apple", "Bread"]} #"Bread", "Apple", "Banana"
     return goodies_dictionary
 
 
