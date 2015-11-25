@@ -122,14 +122,13 @@ def setup_all(user_info):
         setup_bf(int(user_info[1]))
         print "MAKING",num_producers,"PRODUCERS!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         for i in xrange(0, num_producers):
-            while True:
-                try:
-                    Producer(dictionary_food,"Producer_{}".format(i+1)).start()
-                    sleep(.01)
-                    break
-                except Exception as e:
-                    print e
-
+            try:
+                Producer(dictionary_food,"Producer_{}".format(i+1)).start()
+                # sleep(.01)
+            except Exception as e:
+                print "Cant handle that many producers... Too poor to pay them all!"
+                print "All producers greater then",i,"wont be created."
+                break
             # Producer(dictionary_food,name="Producer_{}".format(i+1)).start()
             # print(i)
     else:
