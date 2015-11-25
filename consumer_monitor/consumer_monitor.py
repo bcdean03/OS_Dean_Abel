@@ -125,8 +125,8 @@ def consumers(consumer_num):
             sleep(.01)
         except Exception as e:
             print "Exception:",e
-            print "Cant handle that many producers and consumers!"
-            print "Not enough resources told consumers and producers. Lower producers!"
+            print "Too many clients and producers combined to handle."
+            print "Stopping at client:",id
             break
         id += 1
     print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
