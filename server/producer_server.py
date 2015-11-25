@@ -83,7 +83,7 @@ def client_threaded_socket(client, client_address):
             lock.release()
             p_ingredient_item = dictionary_food[ingredient_item].get()
             lock.acquire()
-            print "<<<< Sending picture:->",p_ingredient_item
+            print"<<<< Sending picture:->",p_ingredient_item
             lock.release()
             client.send(p_ingredient_item)
 
