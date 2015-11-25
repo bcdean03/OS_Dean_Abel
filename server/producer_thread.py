@@ -29,7 +29,8 @@ class Producer(Thread):
             # self.dictionary_food[ingredient].put(ingredient)
 
             # dictionary_food[choice(["Bread", "Apple", "Banana"])].put()
-            sleep(randint(0,5))
+            # sleep(randint(0,5))
+            sleep(5)
 
         # print self.name
         # while q.qsize() != 0:
