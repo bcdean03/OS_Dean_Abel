@@ -11,7 +11,7 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 5
+    consumer_num = 500
     producer_num = 500
     buffer_size = 500
 
