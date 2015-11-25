@@ -28,8 +28,10 @@ class Producer(Thread):
             # lock.release()
             if self.dictionary_food[ingredient].qsize() != self.dictionary_food[ingredient].maxsize:
                 self.dictionary_food[ingredient].put(str(self.name+": "+ingredient))
-            elif self.dictionary_food[ingredient].qsize() == self.dictionary_food[ingredient].maxsize:
                 sleep(randint(0,5))
+            # elif self.dictionary_food[ingredient].qsize() == self.dictionary_food[ingredient].maxsize:
+            #     sleep(randint(0,5))
+            # print ingredient
 
             # self.dictionary_food[ingredient].put(ingredient)
 
