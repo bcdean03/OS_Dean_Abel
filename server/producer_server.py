@@ -126,8 +126,9 @@ def setup_all(user_info):
                 Producer(dictionary_food,"Producer_{}".format(i+1)).start()
                 # sleep(.01)
             except Exception as e:
+                print "Exception:",e
                 print "Cant handle that many producers... Too poor to pay them all!"
-                print "All producers greater then",i,"wont be created."
+                print "Not enough resources told consumers and producers. Lower producers or consumers!"
                 break
             # Producer(dictionary_food,name="Producer_{}".format(i+1)).start()
             # print(i)

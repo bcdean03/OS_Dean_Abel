@@ -119,8 +119,14 @@ def consumers(consumer_num):
     # try:
     for i in xrange(int(consumer_num)):
         # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
-        Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
-        sleep(.01)
+        try:
+            Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
+            sleep(.01)
+        except Exception as e:
+            print "Exception:",e
+            print "Cant handle that many producers and consumers!"
+            print "Not enough resources told consumers and producers. Lower producers or consumers!"
+            break
         id += 1
     print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
     # except Exception:
