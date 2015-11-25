@@ -16,7 +16,7 @@ class Producer(Thread):
         self.dictionary_food = dictionary
 
     def run(self):
-        while True:
+        # while True:
             # global dictionary_food
             ingredient = choice(["Bread", "Apple", "Banana"])
             # lock.acquire()
