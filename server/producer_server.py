@@ -35,7 +35,7 @@ def user_main_socket():
 
 
 def setup_bf(bf_size):
-    list = ["apple","rice","banana"]
+    list = ["Apple", "Banana", "Bread"]
     global dictionary_food
     # print "1:",dictionary_food
 
