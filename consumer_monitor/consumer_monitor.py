@@ -3,7 +3,7 @@ import socket
 from random import choice
 from threading import Thread,RLock
 from time import sleep
-
+import sys
 lock = RLock()
 
 
@@ -12,7 +12,7 @@ def main():
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
     consumer_num = 999
-    producer_num = 500
+    producer_num = 500000
     buffer_size = 500
 
     # s = socket.socket()
@@ -33,14 +33,15 @@ def main():
             print "Error happened"
             s.close()
             exit(0)
+            # raise SystemExit
     except socket.error as error:
         print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
         s.close()
         exit(0)
-    finally:
-        print "!!CLOSING!!"
-        s.close()
-        return consumer_num
+    # finally:
+    print "!!CLOSING!!"
+    s.close()
+    return consumer_num
 
 
 def client_socket(food,recipe_list,c_n):
