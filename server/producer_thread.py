@@ -28,15 +28,16 @@ class Producer(Thread):
             # lock.release()
             if self.dictionary_food[ingredient].qsize() != self.dictionary_food[ingredient].maxsize:
                 self.dictionary_food[ingredient].put(str(self.name+": "+ingredient))
-                sleep(randint(0,5))
+                sleep(randint(0, 5))
 
             if self.dictionary_food[ingredient].maxsize > 15:
                 full = True
                 for i in self.dictionary_food.values():
-                    if i.qsize != self.dictionary_food[ingredient].maxsize:
+                    # print i.qsize()
+                    if i.qsize() != self.dictionary_food[ingredient].maxsize:
                         full = False
                 if full:
-                    print self.name+": Sleeping for 15 seconds."
+                    # print self.name+": Sleeping for 15 seconds."
                     sleep(15)
 
 
