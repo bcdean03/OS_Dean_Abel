@@ -125,7 +125,7 @@ def consumers(consumer_num):
         except Exception as e:
             print "Exception:",e
             print "Cant handle that many producers and consumers!"
-            print "Not enough resources told consumers and producers. Lower producers or consumers!"
+            print "Not enough resources told consumers and producers. Lower producers!"
             break
         id += 1
     print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"

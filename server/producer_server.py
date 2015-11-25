@@ -57,14 +57,21 @@ def start_listening():
     sock = socket.socket()
     sock.bind(addr)
     sock.listen(1000)
+    count = 0
     while True:
         print "Waiting for connection from clients..."
         client, client_addr = sock.accept()
         # print "Made connection with client --->",client_addr
         # ingredient_item = client.recv(1024) #Going to receive some byte from the connection with max byte of 1024
         # Thread(target=client_threaded_socket, args=(client, client_addr, ingredient_item)).start()
-        Thread(target=client_threaded_socket, args=(client, client_addr)).start()
-        sleep(.1)
+        try:
+            Thread(target=client_threaded_socket, args=(client, client_addr)).start()
+            sleep(.1)
+            count+=1
+        except Exception as e:
+            print "Too many producers and clients. Lower the amount of producers"
+            print "Continuing with this amount of clients:",(count+1)
+            break
     sock.close()
 
 
@@ -128,8 +135,9 @@ def setup_all(user_info):
             except Exception as e:
                 print "Exception:",e
                 print "Cant handle that many producers... Too poor to pay them all!"
-                print "Not enough resources told consumers and producers. Lower producers or consumers!"
-                break
+                print "Not enough resources told consumers and producers. Lower producers!"
+                # break
+                exit(0)
             # Producer(dictionary_food,name="Producer_{}".format(i+1)).start()
             # print(i)
     else:
