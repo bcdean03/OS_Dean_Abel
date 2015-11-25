@@ -12,8 +12,17 @@ q = Queue()
 class Producer(Thread):
     def run(self):
         while True:
+            global dictionary_food
             ingredient = choice(["Bread", "Apple", "Banana"])
-            dictionary_food[ingredient].put(str(self.name+": "+ingredient))
+            lock.acquire()
+
+            print dictionary_food
+            print "Ingredient choice:",ingredient
+
+            lock.release()
+            # dictionary_food[ingredient].put(str(self.name+": "+ingredient))
+            dictionary_food[ingredient].put(ingredient)
+
             # dictionary_food[choice(["Bread", "Apple", "Banana"])].put()
             sleep(randint(0,5))
         # print self.name
