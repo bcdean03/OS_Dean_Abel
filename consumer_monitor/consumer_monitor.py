@@ -11,9 +11,9 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 2500
-    producer_num = 500
-    buffer_size = 100000
+    consumer_num = 500
+    producer_num = 250
+    buffer_size = 16
 
     # s = socket.socket()
     # s.connect(("192.168.1.141",5002))#request a connection with the listening server
