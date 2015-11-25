@@ -11,7 +11,7 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 50
+    consumer_num = 20
     producer_num = 1
     buffer_size = 1
 
@@ -75,10 +75,10 @@ def client_socket(food,recipe_list,c_n):
         else:
             update_gui(picture)#finish it later TODO!!!
             lock.acquire()
-            print c_n,"<<<< Received:->",picture
+            print "<<<<",c_n, "Received:->",picture
             lock.release()
     try:
-        print c_n,">>>> Sending:->'Done'"
+        print ">>>>",c_n,"Sending:->'Done'"
         s.send("Done")        # print c_n,"Received:->",received
         s.close()
     except socket.error as error:
