@@ -64,6 +64,7 @@ def start_listening():
         # ingredient_item = client.recv(1024) #Going to receive some byte from the connection with max byte of 1024
         # Thread(target=client_threaded_socket, args=(client, client_addr, ingredient_item)).start()
         Thread(target=client_threaded_socket, args=(client, client_addr)).start()
+        sleep(.01)
     sock.close()
 
 
