@@ -56,7 +56,7 @@ def start_listening():
     addr= ("192.168.1.187", 5007)
     sock = socket.socket()
     sock.bind(addr)
-    sock.listen(100)
+    sock.listen(100000)
     while True:
         print "Waiting for connection from clients..."
         client, client_addr = sock.accept()
