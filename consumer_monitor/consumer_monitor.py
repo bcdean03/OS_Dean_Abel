@@ -25,7 +25,7 @@ def main():
     try:
         s = socket.socket()
         # s.connect(("192.168.1.141",5002))#request a connection with the listening server
-        s.connect(("192.168.1.98",5002))#request a connection with the listening server
+        s.connect(("192.168.1.193",5002))#request a connection with the listening server
         str_of_list= "%s %s"%(producer_num,buffer_size)
         s.send(str_of_list)
         data = s.recv(1024)
@@ -51,7 +51,7 @@ def client_socket(food,recipe_list,c_n):
     :return:
     '''
     # buffer_server = ("192.168.1.141",5007)
-    buffer_server = ("192.168.1.98",5007)
+    buffer_server = ("192.168.1.193",5007)
 
     s = socket.socket()
     s.connect(buffer_server)#request a connection with the listening server
