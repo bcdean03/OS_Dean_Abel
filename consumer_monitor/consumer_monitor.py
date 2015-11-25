@@ -127,25 +127,30 @@ def get_food_and_recipe(goodies):
 
 
 def consumers(consumer_num):
-    food, recipe = get_food_and_recipe(create_recipe_dictionary())
-    print "Going to make",consumer_num,"Consumers++++++++++++++"
-    id = 0
-    # try:
-    for i in xrange(int(consumer_num)):
-        # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
-        try:
-            Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
-            # sleep(.01)
-        except Exception as e:
-            print "Exception:",e
-            print "Too many clients and producers combined to handle."
-            print "Stopping at client:",id
-            break
-        id += 1
-    print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
-    # except Exception:
-    #     print "Trying to to m"
-    #     exit(1)
+     if consumer_num > 2053:
+            print "Too many Consumer, System cant handle. have to be less then 2054"
+            print "Exiting... Try again."
+            exit(0)
+     else:
+        food, recipe = get_food_and_recipe(create_recipe_dictionary())
+        print "Going to make",consumer_num,"Consumers++++++++++++++"
+        id = 0
+        # try:
+        for i in xrange(int(consumer_num)):
+            # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
+            try:
+                Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
+                # sleep(.01)
+            except Exception as e:
+                print "Exception:",e
+                print "Too many clients and producers combined to handle."
+                print "Stopping at client:",id
+                break
+            id += 1
+        print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
+        # except Exception:
+        #     print "Trying to to m"
+        #     exit(1)
 
 if __name__ == '__main__':
     consumers(main())
