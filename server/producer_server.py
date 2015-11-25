@@ -23,7 +23,8 @@ def user_main_socket():
         # print "Received:", user_info_in
         user_info_list = convert_input_to_list(user_info_in)
         # user_info_list = user_info_in.split(' ')
-        setup_all(user_info_list)
+        while not setup_all(user_info_list):
+                pass
         print "!!!Going to send Ready!!!"
         client.send("Ready...")
     finally:
@@ -130,6 +131,7 @@ def setup_all(user_info):
         print("System exit... Incorrect data")
         exit(0)
     print "PRODUCERS ARE DONE"
+    return True
 
 if __name__ == '__main__':
     # global dictionary_food
