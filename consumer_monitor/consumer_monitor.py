@@ -55,9 +55,10 @@ def client_socket(food,recipe_list,c_n):
 
     s = socket.socket()
     counter = 0
-    while counter != 4:
+    while True:
         try:
             s.connect(buffer_server)#request a connection with the listening server
+            break
         except socket.error as error:
             print "Attempting to reconnect"
             counter +=1
