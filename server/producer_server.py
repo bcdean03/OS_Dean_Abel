@@ -11,28 +11,25 @@ lock = RLock()
 
 
 def user_main_socket():
-    try:
-        addr= ("192.168.1.141", 5002)
-        sock = socket.socket()
-        sock.bind(addr)
-        sock.listen(1)
-        print "Waiting for connection first user..."
-        client,client_addr = sock.accept()
-        print "Made connection with client --->",client_addr
-        user_info_in = client.recv(1024)
-        # print "Received:", user_info_in
-        user_info_list = convert_input_to_list(user_info_in)
-        # user_info_list = user_info_in.split(' ')
-        while not setup_all(user_info_list):
-                pass
-        print "!!!Going to send Ready!!!"
-        client.send("Ready...")
-    finally:
-        "Closing socket..."
-        sock.close()
-        # client.close()
-        # return user_info_list
-        start_listening()
+    addr= ("192.168.1.141", 5002)
+    sock = socket.socket()
+    sock.bind(addr)
+    sock.listen(1)
+    print "Waiting for connection first user..."
+    client,client_addr = sock.accept()
+    print "Made connection with client --->",client_addr
+    user_info_in = client.recv(1024)
+    # print "Received:", user_info_in
+    user_info_list = convert_input_to_list(user_info_in)
+    # user_info_list = user_info_in.split(' ')
+    setup_all(user_info_list)
+    print "!!!Going to send Ready!!!"
+    client.send("Ready...")
+    "Closing socket..."
+    sock.close()
+    # client.close()
+    # return user_info_list
+    start_listening()
 
 
 def setup_bf(bf_size):
@@ -65,7 +62,7 @@ def start_listening():
         # ingredient_item = client.recv(1024) #Going to receive some byte from the connection with max byte of 1024
         # Thread(target=client_threaded_socket, args=(client, client_addr, ingredient_item)).start()
         Thread(target=client_threaded_socket, args=(client, client_addr)).start()
-        sleep(.01)
+        sleep(.1)
     sock.close()
 
 
@@ -131,7 +128,7 @@ def setup_all(user_info):
         print("System exit... Incorrect data")
         exit(0)
     print "PRODUCERS ARE DONE"
-    return True
+    # return True
 
 if __name__ == '__main__':
     # global dictionary_food
