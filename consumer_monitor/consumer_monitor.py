@@ -11,9 +11,9 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 2500
-    producer_num = 500
-    buffer_size = 500
+    consumer_num = 1
+    producer_num = 1
+    buffer_size = 1
 
     # s = socket.socket()
     # s.connect(("192.168.1.141",5002))#request a connection with the listening server
@@ -73,7 +73,7 @@ def client_socket(food,recipe_list,c_n):
     print c_n,"Food:->",food,": Recipe_list:->",recipe_list
     for i in recipe_list:
         lock.acquire()
-        print c_n,"Sending:->",i
+        print ">>>>",c_n,"Sending:->",i
         lock.release()
         s.send(i)
 
@@ -133,7 +133,7 @@ def consumers(consumer_num):
             exit(0)
      else:
         food, recipe = get_food_and_recipe(create_recipe_dictionary())
-        print "Going to make",consumer_num,"Consumers++++++++++++++"
+        print "+++++++Going to make",consumer_num,"Consumers+++++++"
         id = 0
         # try:
         for i in xrange(int(consumer_num)):
