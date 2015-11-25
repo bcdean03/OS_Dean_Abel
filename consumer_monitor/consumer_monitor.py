@@ -131,13 +131,13 @@ def consumers(consumer_num):
             print "Exiting... Try again."
             exit(0)
      else:
-        food, recipe = get_food_and_recipe(create_recipe_dictionary())
         print "+++++++Going to make",consumer_num,"Consumers+++++++"
         id = 0
         # try:
         for i in xrange(int(consumer_num)):
             # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
             try:
+                food, recipe = get_food_and_recipe(create_recipe_dictionary())
                 Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
                 # sleep(.01)
             except Exception as e:
