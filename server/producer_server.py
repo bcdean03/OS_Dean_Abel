@@ -122,6 +122,7 @@ def setup_all(user_info):
         setup_bf(int(user_info[1]))
         for i in xrange(0, num_producers):
             Producer(dictionary_food,"Producer_{}".format(i+1)).start()
+            sleep(.01)
             # Producer(dictionary_food,name="Producer_{}".format(i+1)).start()
             # print(i)
     else:
