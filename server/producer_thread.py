@@ -13,7 +13,7 @@ from time import sleep
 class Producer(Thread):
     def __init__(self,dictionary):
         Thread.__init__(self)
-        self. dictionary_food = dictionary
+        self.dictionary_food = dictionary
 
     def run(self):
         while True:
