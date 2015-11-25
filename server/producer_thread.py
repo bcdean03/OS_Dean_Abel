@@ -19,7 +19,7 @@ class Producer(Thread):
         while True:
             # global dictionary_food
             ingredient = choice(["Bread", "Apple", "Banana"])
-            print "INGREEEEEEEEEEEEEEEEEEEEEEEDIENT:", ingredient
+            # print "INGREEEEEEEEEEEEEEEEEEEEEEEDIENT:", ingredient
             # lock.acquire()
 
             # print dictionary_food
