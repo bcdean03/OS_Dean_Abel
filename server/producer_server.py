@@ -116,7 +116,11 @@ def setup_all(user_info):
         num_producers = int(user_info[0])
         setup_bf(int(user_info[1]))
         for i in xrange(0, num_producers):
-            Producer(dictionary_food,name="Producer_{}".format(i+1)).start()
+            lock.acquire()
+            print dictionary_food, "->FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+            lock.release()
+            Producer(dictionary_food).start()
+            # Producer(dictionary_food,name="Producer_{}".format(i+1)).start()
             # print(i)
     else:
         print("System exit... Incorrect data")
