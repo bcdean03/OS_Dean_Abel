@@ -1,6 +1,6 @@
 __author__ = 'Dean, Abel'
 import socket
-from producer_thread import Producer
+from producer_thread import *
 from Queue import Queue
 from threading import Thread,RLock
 global dictionary_food
