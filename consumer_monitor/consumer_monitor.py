@@ -63,7 +63,8 @@ def client_socket(food,recipe_list,c_n):
             counter +=1
     # print c_n,"Connected to:->",buffer_server
     # print c_n,"Sending:->",str_list
-
+    if counter == 4:
+        print "!"*1000
     #Mabey put try catch arround all of this TODO
     print c_n,"Food:->",food,": Recipe_list:->",recipe_list
     for i in recipe_list:
