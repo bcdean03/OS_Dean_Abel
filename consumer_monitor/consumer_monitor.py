@@ -11,9 +11,9 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 5
-    producer_num = 2
-    buffer_size = 1
+    consumer_num = 2500
+    producer_num = 500
+    buffer_size = 100000
 
     # s = socket.socket()
     # s.connect(("192.168.1.141",5002))#request a connection with the listening server
@@ -126,30 +126,26 @@ def get_food_and_recipe(goodies):
 
 
 def consumers(consumer_num):
-     if consumer_num > 2053:
-            print "Too many Consumer, System cant handle. have to be less then 2054"
-            print "Exiting... Try again."
-            exit(0)
-     else:
-        print "+++++++Going to make",consumer_num,"Consumers+++++++"
-        id = 0
-        # try:
-        for i in xrange(int(consumer_num)):
-            # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
-            try:
-                food, recipe = get_food_and_recipe(create_recipe_dictionary())
-                Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
-                # sleep(.01)
-            except Exception as e:
-                print "Exception:",e
-                print "Too many clients and producers combined to handle."
-                print "Stopping at client:",id
-                break
-            id += 1
-        print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
-        # except Exception:
-        #     print "Trying to to m"
-        #     exit(1)
+
+    print "+++++++Going to make",consumer_num,"Consumers+++++++"
+    id = 0
+    # try:
+    for i in xrange(int(consumer_num)):
+        # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
+        try:
+            food, recipe = get_food_and_recipe(create_recipe_dictionary())
+            Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
+            # sleep(.01)
+        except Exception as e:
+            print "Exception:",e
+            print "Too many clients and producers combined to handle."
+            print "Stopping at client:",id
+            break
+        id += 1
+    print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
+    # except Exception:
+    #     print "Trying to to m"
+    #     exit(1)
 
 if __name__ == '__main__':
     consumers(main())
