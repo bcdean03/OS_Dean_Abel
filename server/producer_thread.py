@@ -19,13 +19,16 @@ class Producer(Thread):
         while True:
             # global dictionary_food
             ingredient = choice(["Bread", "Apple", "Banana"])
+            print "INGREEEEEEEEEEEEEEEEEEEEEEEDIENT:", ingredient
             # lock.acquire()
 
             # print dictionary_food
             # print "Ingredient choice:",ingredient
 
             # lock.release()
-            self.dictionary_food[ingredient].put(str(self.name+": "+ingredient))
+            if self.dictionary_food[ingredient].qsize() != self.dictionary_food[ingredient].maxsize:
+                self.dictionary_food[ingredient].put(str(self.name+": "+ingredient))
+
             # self.dictionary_food[ingredient].put(ingredient)
 
             # dictionary_food[choice(["Bread", "Apple", "Banana"])].put()
