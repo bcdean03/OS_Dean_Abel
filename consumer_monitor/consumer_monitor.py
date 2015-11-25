@@ -11,8 +11,8 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 999
-    producer_num = 500000
+    consumer_num = 2500
+    producer_num = 500
     buffer_size = 500
 
     # s = socket.socket()
@@ -102,8 +102,21 @@ def update_gui(ingredient):
     pass
 
 def create_recipe_dictionary():
-    goodies_dictionary = {"Banana Bread": ["Banana", "Bread"],
-                          "Apple Bread": ["Apple", "Bread"]} #"Bread", "Apple", "Banana"
+    # goodies_dictionary = {"Banana Bread": ["Banana", "Bread"],
+    #                       "Apple Bread": ["Apple", "Bread"]} #"Bread", "Apple", "Banana"
+    goodies_dictionary = {
+    "Banana Bread":["Salt","Flour","Eggs","Sugar","Banana","Baking Soda","Butter","Yeast","Water"],
+    "Apple Bread":["Salt","Flour","Eggs","Sugar","Apple","Baking Soda","Butter","Yeast","Water"],
+    "Raisin Bread":["Salt","Flour","Eggs","Sugar","Raisin","Baking Soda","Butter","Yeast","Water"],
+    "Pumpkin Bread":["Salt","Flour","Eggs","Sugar","Pumpkin","Baking Soda","Butter","Yeast","Water"],
+    "Wheat Bread":["Salt","Eggs","Sugar","Wheat Flour","Baking Soda","Butter","Yeast","Water"],
+    "Honey Bread":["Salt","Flour","Eggs","Sugar","Honey","Baking Soda","Butter","Yeast","Water"],
+    "Chocolate Chip Bread":["Salt","Flour","Eggs","Sugar","Chocolate Chips","Baking Soda","Butter","Yeast","Water"],
+    "Cinnamon Bread":["Salt","Flour","Eggs","Sugar","Cinnamon","Baking Soda","Butter","Yeast","Water"],
+    "Pizza":["Salt","Flour","Eggs","Yeast","Water","Oil","Pepperoni","Sauce","Cheese"],
+    "Mac and Cheese":["Cheese","Milk","Noodles","Water"],
+    "Cheese burger":["Cheese","Hamburger","Lettuce"],
+    "Spaghetti":["Cheese","Noodles","Hamburger","Sauce"]}
     return goodies_dictionary
 
 
@@ -122,7 +135,7 @@ def consumers(consumer_num):
         # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
         try:
             Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
-            sleep(.01)
+            # sleep(.01)
         except Exception as e:
             print "Exception:",e
             print "Too many clients and producers combined to handle."
