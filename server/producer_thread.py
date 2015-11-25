@@ -11,8 +11,8 @@ from time import sleep
 
 
 class Producer(Thread):
-    def __init__(self,dictionary):
-        Thread.__init__(self)
+    def __init__(self,dictionary,name):
+        Thread.__init__(self,name=name)
         self.dictionary_food = dictionary
 
     def run(self):
@@ -25,8 +25,8 @@ class Producer(Thread):
             # print "Ingredient choice:",ingredient
 
             # lock.release()
-            # dictionary_food[ingredient].put(str(self.name+": "+ingredient))
-            self.dictionary_food[ingredient].put(ingredient)
+            self.dictionary_food[ingredient].put(str(self.name+": "+ingredient))
+            # self.dictionary_food[ingredient].put(ingredient)
 
             # dictionary_food[choice(["Bread", "Apple", "Banana"])].put()
             # sleep(randint(0,5))
