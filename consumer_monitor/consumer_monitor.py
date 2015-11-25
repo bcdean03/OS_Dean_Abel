@@ -11,9 +11,9 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 1000000
-    producer_num = 5000
-    buffer_size = 100
+    consumer_num = 5
+    producer_num = 500
+    buffer_size = 500
 
     # s = socket.socket()
     # s.connect(("192.168.1.141",5002))#request a connection with the listening server
@@ -110,7 +110,7 @@ def consumers(consumer_num):
         Thread(target=client_socket, args=(food,recipe,"Client_{}".format(id))).start()
         sleep(.01)
         id += 1
-    print "{{{{{Done making",consumer_num,"Consumers}}}}}"
+    print "{{{{{Finishing making",consumer_num,"Consumers}}}}}"
     # except Exception:
     #     print "Trying to to m"
     #     exit(1)
