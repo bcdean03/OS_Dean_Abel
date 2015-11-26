@@ -1,9 +1,11 @@
+__author__ = 'Dean'
 # __author__ = 'abelamadou'
 from threading import Thread
 from Tkinter import *
 import tkinter.messagebox
 from time import sleep
 import re
+import tkFont
 
 
 class AbeanGui(Thread):
@@ -11,7 +13,7 @@ class AbeanGui(Thread):
         Thread.__init__(self)
         self.root = master
         self.root.title("Abean Groceries")
-        # self.root.geometry('450x300+200+200')
+        self.root.geometry('450x300+200+200')
 
 
     def run(self):
@@ -92,17 +94,39 @@ class AbeanGui(Thread):
         # print self.buffer_amount
 
         # frame = Frame(self.root)
-        frame2 = Frame(self.root,bg="red")
-        frame2.grid(rowspan=1000, columnspan=1000)
+        frame2 = Frame(self.root, borderwidth=5, width=200, height=100, bg='blue')
+        frame2.grid(column=0,row=0,columnspan=3,rowspan=2)
         # frame2.pack(side=RIGHT)
         # frame2.pack(fill=BOTH)
-        label1 = Label(frame2, text="Hello")
-        label1.grid(row=0, column=0, columnspan=2, rowspan = 2)
+        label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
+        label1.grid(row=0, column=1)
+        label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
+        label1.grid(row=1, column=1)
+        label1= Label(frame2, text="Bread", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1.grid(row=1, column=1)
+        label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1.grid(row=0, column=1)
+        label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1.grid(row=2,column=1)
         # self.root.button = Button(self.frame2, text="Helllllo")
         # self.root.button.grid(row=3, column=2, sticky=W)
         # label1.pack()
-        # w1 = Canvas(frame2, width=50, height=30,background="white", scrollregion=(0,0,3000,3000))
+        # w1 = Canvas(frame2, width=50, height=30,background="white")
+        # w1.create_oval(10,10,20,20, fill='green', )
+        # w1.grid(row=0,column=0)
+        # w1 = Canvas(frame2, width=20, height=30,background="white")
+        # w1.create_oval(10,10,20,20, fill='red', )
+        # w1.grid(row=1,column=0)
 
+        w1 = Canvas(frame2, width=20, height=20,background="red")
+        w1.create_oval(6,6,16,16, fill='green', )
+        w1.grid(row=0,column=0)
+        w1 = Canvas(frame2, width=20, height=20,background="red")
+        w1.create_oval(6,6,16,16, fill='green', )
+        w1.grid(row=1,column=0)
+        w1 = Canvas(frame2, width=20, height=20,background="red")
+        w1.create_oval(6,6,16,16, fill='green', )
+        w1.grid(row=2,column=0)
 
         # scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
         # scr_h1.pack(side=BOTTOM,fill=X)
@@ -118,7 +142,7 @@ class AbeanGui(Thread):
         #
         # # inserted to see if it's actually scrolling
         # w1.create_oval(0,0,50,50,fill='red')
-        pass
+        # pass
 
 
 
