@@ -37,7 +37,7 @@ class AbeanGui(Thread):
         self.root.title("Abean Groceries")
         # self.root.geometry('450x300+200+200')
     def callback(self):
-        sleep(3)
+        # sleep(3)
         self.root.quit()
     def run(self):
         # welcome_screen()

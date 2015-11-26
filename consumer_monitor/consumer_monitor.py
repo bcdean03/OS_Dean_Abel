@@ -11,8 +11,8 @@ def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 500
-    producer_num = 250
+    consumer_num = 5
+    producer_num = 5
     buffer_size = 16
 
     # s = socket.socket()
@@ -25,7 +25,7 @@ def main():
     try:
         s = socket.socket()
         # s.connect(("192.168.1.141",5002))#request a connection with the listening server
-        s.connect(("192.168.1.136",5002))#request a connection with the listening server
+        s.connect(("192.168.1.141",5002))#request a connection with the listening server
         str_of_list= "%s %s"%(producer_num,buffer_size)
         s.send(str_of_list)
         data = s.recv(1024)
@@ -52,7 +52,7 @@ def client_socket(food,recipe_list,c_n):
     :return:
     '''
     # buffer_server = ("192.168.1.141",5007)
-    buffer_server = ("192.168.1.136",5007)
+    buffer_server = ("192.168.1.141",5007)
 
     s = socket.socket()
     while True:
