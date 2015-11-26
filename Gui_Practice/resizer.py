@@ -7,11 +7,11 @@ master = Tk()
 base_width = 50
 height_size = 50
 w = Canvas(master, width=1000, height=1000)
-load = Image.open('hiking.png')
+load = Image.open('space.png')
 # width_percent = (base_width*.5 / float(load.size[0]))
 # height_size = int((float(load.size[1]) * float(width_percent)))
 img = load.resize((base_width, height_size), Image.ANTIALIAS)
-img.save("hiking_resized_image.png")
+img.save("space_resized_image.png")
 render = ImageTk.PhotoImage(img)
 img = Label(image=render, bg="red")
 img.image = render

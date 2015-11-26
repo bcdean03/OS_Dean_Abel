@@ -6,6 +6,7 @@ import tkinter.messagebox
 from time import sleep
 import re
 import tkFont
+from PIL import Image, ImageTk
 
 
 class AbeanGui(Thread):
@@ -117,12 +118,22 @@ class AbeanGui(Thread):
         label1.grid(row=1, column=1)
         label1= Label(frame2, text="Bread", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=1, column=1)
-        label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=0, column=1)
-        label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=2,column=1)
-        label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
-        label1.grid(row=3,column=1)
+        # label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        # label1.grid(row=3,column=1)
+
+
+
+
+        load = Image.open('space_resized_image.png')
+        render = ImageTk.PhotoImage(load)
+
+        img = Label(frame2,image=render, bg="green",text="SPACE",fg="black",font=tkFont.Font(family="comic sans ms", size =20),compound="bottom",borderwidth=15,relief="ridge")
+        img.image = render
+        img.grid(row=3,column=1)
         # self.root.button = Button(self.frame2, text="Helllllo")
         # self.root.button.grid(row=3, column=2, sticky=W)
         # label1.pack()

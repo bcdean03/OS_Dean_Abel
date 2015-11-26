@@ -111,17 +111,17 @@ class AbeanGui(Thread):
 
 
 
-        label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
+        label1 = Label(frame2, text="Hello", bd=10,relief="ridge", anchor=N)
         label1.grid(row=0, column=1)
-        label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
+        label1 = Label(frame2, text="Hello", bd=10,relief="ridge", anchor=N)
         label1.grid(row=1, column=1)
         label1= Label(frame2, text="Bread", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=1, column=1)
         label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=0, column=1)
-        label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1= Label(frame2, text="Cinammon", bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=2,column=1)
-        label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1= Label(frame2, text="Cinammon", bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=3,column=1)
         # self.root.button = Button(self.frame2, text="Helllllo")
         # self.root.button.grid(row=3, column=2, sticky=W)
