@@ -93,13 +93,13 @@ class AbeanGui(Thread):
 
         # frame = Frame(self.root)
         self.frame2 = Frame(self.root,bg="red", width=1000, height=1000)
-        self.frame2.grid(rowspan =100, columnspan=100)
+        self.frame2.grid()
         # frame2.pack(side=RIGHT)
         # frame2.pack(fill=BOTH)
         # label1 = Label(self.frame2, text="Hello")
         # label1.grid(row=3, column=1)
-        self.root.button = Button(self.frame2, text="Helllllo")
-        self.root.button.grid(row=3, column=2, stick=W)
+        # self.root.button = Button(self.frame2, text="Helllllo")
+        # self.root.button.grid(row=3, column=2, sticky=W)
         # label1.pack()
         # w1 = Canvas(frame2, width=50, height=30,background="white", scrollregion=(0,0,3000,3000))
 
