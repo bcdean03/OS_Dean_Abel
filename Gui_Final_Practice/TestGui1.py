@@ -35,14 +35,14 @@ class AbeanGui(Thread):
         Thread.__init__(self)
         self.root = Tk()
         self.root.title("Abean Groceries")
-        self.root.geometry('450x300+200+200')
+        # self.root.geometry('450x300+200+200')
     def callback(self):
         sleep(3)
         self.root.quit()
     def run(self):
         # welcome_screen()
         # cooking_screen()
-        self.root.protocol("WM_DELETE_WINDOW", self.callback)
+        # self.root.protocol("WM_DELETE_WINDOW", self.callback)
         self.root.mainloop()
 
 
