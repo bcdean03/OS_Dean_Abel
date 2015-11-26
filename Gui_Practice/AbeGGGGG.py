@@ -102,7 +102,7 @@ class AbeanGui(Thread):
         # frame2.pack(fill=BOTH)
         label1 = Label(c, text="Hello")
         label1.grid(row=3, column=1)
-        c.create_window()
+        c.create_window(100,100,window=label1)
         # self.root.button = Button(self.frame2, text="Helllllo")
         # self.root.button.grid(row=3, column=2, sticky=W)
         # label1.pack()
