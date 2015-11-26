@@ -31,67 +31,53 @@ def cooking_screen():
 
 
 class AbeanGui(Thread):
-    def __init__(self):
+    def __init__(self,master):
         Thread.__init__(self)
-        self.root = Tk()
+        self.root = master
         self.root.title("Abean Groceries")
-        self.root.geometry('450x300+200+200')
+        # self.root.geometry('450x300+200+200')
 
 
     def run(self):
         self.welcome_screen()
         # cooking_screen()
         # self.root.protocol("WM_DELETE_WINDOW", self.callback)
-        self.root.mainloop()
+        # self.root.mainloop()
 
     def changeLabel(self):
-        print self.producer_number.get()
+        # print self.producer_number.get()
+        if(int())
+        print self.entry_comsumer.get()
+        print self.entry_producer.get()
+        print self.entry_buffersize.get()
         # name ="Thanks for the click"+ yourName.get()
         # labelText.set(name)
         # yourName.delete(0,END)
         # yourName.insert(0,"My name is Abel")
         return
     def welcome_screen(self):
-        producer_number_variable = StringVar(None)#Accept information from customer
-        self.producer_number = Entry(self.root, textvariable= producer_number_variable)
-        self.producer_number.pack()
-        # print producer_number_variable
-        print self.producer_number
-        # custName = StringVar(None)#Accept information from customer
-        # # custName.set("Howdy")
-        # yourName= Entry(self.root, textvariable=custName)
-        # yourName.pack()
+        label_comsumer = Label(self.root,text="Number of Comsumer")
+        label_producer =Label(self.root,text="Number of Producer")
+        label_buffersize =Label(self.root,text="Buffer Size")
 
-        button1 = Button(self.root, text="Click Here",width=20,command=self.changeLabel)
-        button1.pack(side='bottom',padx=15,pady=15)#Can do bottom,top etc...
+        self.entry_comsumer = Entry(self.root)
+        self.entry_producer = Entry(self.root)
+        self.entry_buffersize = Entry(self.root)
+
+        label_comsumer.grid(row=0,column=0,sticky=E)
+        label_producer.grid(row=1,sticky=E)
+        label_buffersize.grid(row=2,column=0,sticky=E)
+
+        self.entry_comsumer.grid(row=0,column=1,sticky=E)
+        self.entry_producer.grid(row=1,column=1,sticky=E)
+        self.entry_buffersize.grid(row=2,column=1,sticky=E)
+
+        button1 = Button(self.root, text="Done",command=self.changeLabel)
+        button1.grid(row=4,column=1,sticky=S)
 
 if __name__ == '__main__':
-    AbeanGui().start()
 
-# import tkinter as tk
-# import threading
-#
-# class App(threading.Thread):
-#
-#     def __init__(self):
-#         threading.Thread.__init__(self)
-#         self.start()
-#
-#     def callback(self):
-#         self.root.quit()
-#
-#     def run(self):
-#         self.root = tk.Tk()
-#         self.root.protocol("WM_DELETE_WINDOW", self.callback)
-#
-#         label = tk.Label(self.root, text="Hello World")
-#         label.pack()
-#
-#         self.root.mainloop()
-#
-#
-# app = App()
-# print('Now we can continue running code while mainloop runs!')
-#
-# for i in range(100000):
-#     print(i)
+    root = Tk()
+    AbeanGui(root).start()
+    root.mainloop()
+
