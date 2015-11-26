@@ -1,3 +1,4 @@
+__author__ = 'abelamadou'
 # __author__ = 'abelamadou'
 from threading import Thread
 from Tkinter import *
@@ -11,7 +12,7 @@ class AbeanGui(Thread):
         Thread.__init__(self)
         self.root = master
         self.root.title("Abean Groceries")
-        # self.root.geometry('450x300+200+200')
+        self.root.geometry('450x300+200+200')
 
 
     def run(self):
@@ -91,18 +92,23 @@ class AbeanGui(Thread):
         # print self.producer_amount
         # print self.buffer_amount
 
+        c = Canvas(self.root, width=500, height=300,background="blue")
+        c.grid(row=4,column=1)
+
         # frame = Frame(self.root)
-        # frame2 = Frame(self.root,bg="red")
-        # frame2.grid(rowspan=1000, columnspan=1000)
-        # # frame2.pack(side=RIGHT)
-        # # frame2.pack(fill=BOTH)
-        # label1 = Label(frame2, text="Hello")
-        # label1.grid(row=0, column=0, columnspan=2, rowspan = 2)
+        # self.frame2 = Frame(self.root,bg="red") #width=100, height=100)
+        # self.frame2.grid( columnspan=3, rowspan=2)
+        # frame2.pack(side=RIGHT)
+        # frame2.pack(fill=BOTH)
+        label1 = Label(c, text="Hello")
+        label1.grid(row=3, column=1)
+        c.create_window()
         # self.root.button = Button(self.frame2, text="Helllllo")
         # self.root.button.grid(row=3, column=2, sticky=W)
         # label1.pack()
         # w1 = Canvas(frame2, width=50, height=30,background="white", scrollregion=(0,0,3000,3000))
 
+        # c.grid(row=4,column=1)
 
         # scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
         # scr_h1.pack(side=BOTTOM,fill=X)
@@ -118,33 +124,34 @@ class AbeanGui(Thread):
         #
         # # inserted to see if it's actually scrolling
         # w1.create_oval(0,0,50,50,fill='red')
-
-
-
-
-
-
-        # frame = Frame(self.root)
-        frame2 = Frame(self.root)
-        frame2.pack(side=RIGHT)
-
-        w1 = Canvas(frame2, width=600, height=300,background="white", scrollregion=(0,0,3000,3000))
-
-
-        scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
-        scr_h1.pack(side=BOTTOM,fill=X)
-        scr_h1.config(command=w1.xview)
-
-        scr_v1 = Scrollbar(frame2,orient=VERTICAL)
-        scr_v1.pack(side=RIGHT,fill=Y)
-        scr_v1.config(command=w1.yview)
-
-        w1.config(xscrollcommand=scr_h1.set,yscrollcommand=scr_v1.set)
-        w1.pack(fill=BOTH,expand=True)
-
-        # inserted to see if it's actually scrolling
-        w1.create_oval(0,0,50,50,fill='red')
         pass
+
+
+
+
+
+
+        # # frame = Frame(self.root)
+        # frame2 = Frame(self.root)
+        # frame2.pack(side=RIGHT)
+        #
+        # w1 = Canvas(frame2, width=600, height=300,background="white", scrollregion=(0,0,3000,3000))
+        #
+        #
+        # scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
+        # scr_h1.pack(side=BOTTOM,fill=X)
+        # scr_h1.config(command=w1.xview)
+        #
+        # scr_v1 = Scrollbar(frame2,orient=VERTICAL)
+        # scr_v1.pack(side=RIGHT,fill=Y)
+        # scr_v1.config(command=w1.yview)
+        #
+        # w1.config(xscrollcommand=scr_h1.set,yscrollcommand=scr_v1.set)
+        # w1.pack(fill=BOTH,expand=True)
+        #
+        # # inserted to see if it's actually scrolling
+        # w1.create_oval(0,0,50,50,fill='red')
+        # pass
 if __name__ == '__main__':
 
     root = Tk()
