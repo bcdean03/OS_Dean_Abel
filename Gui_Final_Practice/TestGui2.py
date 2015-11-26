@@ -31,8 +31,12 @@ class AbeanGui(Thread):
                 print self.entry_comsumer.get()
                 print self.entry_producer.get()
                 print self.entry_buffer_size.get()
-                self.root.grid_forget
-                self.cooking_screen()
+                self.label_comsumer.grid_forget()
+                self.label_producer.grid_forget()
+                self.label_buffersize.grid_forget()
+
+                self.button1.grid_forget()
+                # self.cooking_screen()
             else:
                 tkinter.messagebox.showinfo("Error!",detail="Producers < 2053, Consumer < 50")
 
@@ -47,24 +51,24 @@ class AbeanGui(Thread):
         return
 
     def welcome_screen(self):
-        label_comsumer = Label(self.root,text="Number of Comsumer")
-        label_producer =Label(self.root,text="Number of Producer")
-        label_buffersize =Label(self.root,text="Buffer Size")
+        self.label_comsumer = Label(self.root,text="Number of Comsumer")
+        self.label_producer =Label(self.root,text="Number of Producer")
+        self.label_buffersize =Label(self.root,text="Buffer Size")
 
         self.entry_comsumer = Entry(self.root)
         self.entry_producer = Entry(self.root)
         self.entry_buffer_size = Entry(self.root)
 
-        label_comsumer.grid(row=0,column=0,sticky=E)
-        label_producer.grid(row=1,sticky=E)
-        label_buffersize.grid(row=2,column=0,sticky=E)
+        self.label_comsumer.grid(row=0,column=0,sticky=E)
+        self.label_producer.grid(row=1,sticky=E)
+        self.label_buffersize.grid(row=2,column=0,sticky=E)
 
         self.entry_comsumer.grid(row=0,column=1,sticky=E)
         self.entry_producer.grid(row=1,column=1,sticky=E)
         self.entry_buffer_size.grid(row=2,column=1,sticky=E)
 
-        button1 = Button(self.root, text="Done",command=self.change_label)
-        button1.grid(row=4,column=1,sticky=S)
+        self.button1 = Button(self.root, text="Done",command=self.change_label)
+        self.button1.grid(row=4,column=1,sticky=S)
 
 
 
