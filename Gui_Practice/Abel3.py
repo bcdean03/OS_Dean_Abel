@@ -8,7 +8,7 @@ frame2 = Frame(root,background="blue")
 frame2.pack()
 # frame2.pack(side=RIGHT)
 
-w1 = Canvas(frame2, width=450, height=300,background="green", scrollregion=(0,0,3000,3000))
+w1 = Canvas(frame2, width=1000, height=1000,background="green", scrollregion=(0,0,3000,3000))
 
 
 scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
@@ -47,14 +47,3 @@ def task():
 task()
 
 root.mainloop()
-
-
-# canvas = Canvas(width=300, height=300, bg='white')
-# canvas.pack(expand=YES, fill=BOTH)
-#
-# widget = Label(canvas, text='Spam', fg='white', bg='black')
-# widget.pack()
-# canvas.create_window(100, 100, window=widget)
-# mainloop()
-
-
