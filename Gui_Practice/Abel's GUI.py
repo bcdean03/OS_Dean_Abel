@@ -1,52 +1,52 @@
 __author__ = 'Abel'
-# from tkinter import *
-# import tkinter.messagebox  #Allow to pop message box
-#
-# app = Tk()#basic interface
-# app.title("GUIII")
-# app.geometry('450x300+200+200')#How big you want the application to be displayed on the screen
-#
-# #Make a label
-# labelText = StringVar() # StringVar() Allows you to enter Strings
-# # labelText.set(" ".join(["a","c","d"]))
-# labelText.set("Click here noob")
-# # label1= Label(app, textvariable=labelText,height=4)#Attribute want label to have
-# label1= Label(app, textvariable=labelText, bg="red",fg="yellow",height=4)#Attribute want label to have
-# label1.pack(fill=X)#important to pack
-# # label1.pack()#important to pack
-#
-# #Making a checkbox
-# checkBoxVal = IntVar()# IntVar() Allows you to enter Integers
-# checkBox1 = Checkbutton(app,variable=checkBoxVal,text="Happy?")
-# checkBox1.pack()
-#
-# custName = StringVar(None)#Accept information from customer
-# # custName.set("Howdy")
-# yourName= Entry(app, textvariable=custName)
-# yourName.pack()
-#
-# def beenClicked():
-#     radioValue =relStatus.get()
-#     tkinter.messagebox.showinfo("You cliked",radioValue)
-#     return
-# #Radio button
-# relStatus = StringVar()
-# relStatus.set(None)#Set them by default to None
-# radio1=Radiobutton(app,text="Single", value="Single",variable=relStatus,command=beenClicked).pack()#make it so only can select one of them at a time, thus why going to have same name
-# radio1=Radiobutton(app,text="Married", value="Married",variable=relStatus,command=beenClicked).pack()#make it so only can select one of them at a time, thus why going to have same name
-#
-# #Make buttons
-# def changeLabel():
-#     name ="Thanks for the click"+ yourName.get()
-#     labelText.set(name)
-#     yourName.delete(0,END)
-#     yourName.insert(0,"My name is Abel")
-#     return
-# button1 = Button(app, text="Click Here",width=20,command=changeLabel)
-# button1.pack(side='bottom',padx=15,pady=15)#Can do bottom,top etc...
-#
-#
-# app.mainloop()
+from tkinter import *
+import tkinter.messagebox  #Allow to pop message box
+
+app = Tk()#basic interface
+app.title("GUIII")
+app.geometry('450x300+200+200')#How big you want the application to be displayed on the screen
+
+#Make a label
+labelText = StringVar() # StringVar() Allows you to enter Strings
+# labelText.set(" ".join(["a","c","d"]))
+labelText.set("Click here noob")
+# label1= Label(app, textvariable=labelText,height=4)#Attribute want label to have
+label1= Label(app, textvariable=labelText, bg="red",fg="yellow",height=4)#Attribute want label to have
+label1.pack(fill=X)#important to pack
+# label1.pack()#important to pack
+
+#Making a checkbox
+checkBoxVal = IntVar()# IntVar() Allows you to enter Integers
+checkBox1 = Checkbutton(app,variable=checkBoxVal,text="Happy?")
+checkBox1.pack()
+
+custName = StringVar(None)#Accept information from customer
+# custName.set("Howdy")
+yourName= Entry(app, textvariable=custName)
+yourName.pack()
+
+def beenClicked():
+    radioValue =relStatus.get()
+    tkinter.messagebox.showinfo("You cliked",radioValue)
+    return
+#Radio button
+relStatus = StringVar()
+relStatus.set(None)#Set them by default to None
+radio1=Radiobutton(app,text="Single", value="Single",variable=relStatus,command=beenClicked).pack()#make it so only can select one of them at a time, thus why going to have same name
+radio1=Radiobutton(app,text="Married", value="Married",variable=relStatus,command=beenClicked).pack()#make it so only can select one of them at a time, thus why going to have same name
+
+#Make buttons
+def changeLabel():
+    name ="Thanks for the click"+ yourName.get()
+    labelText.set(name)
+    yourName.delete(0,END)
+    yourName.insert(0,"My name is Abel")
+    return
+button1 = Button(app, text="Click Here",width=20,command=changeLabel)
+button1.pack(side='bottom',padx=15,pady=15)#Can do bottom,top etc...
+
+
+app.mainloop()
 #
 
 
