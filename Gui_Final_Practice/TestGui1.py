@@ -1,6 +1,7 @@
 # __author__ = 'abelamadou'
 from threading import Thread
-from Tkinter import *
+from tkinter import *
+
 from time import sleep
 
 
@@ -31,23 +32,26 @@ def cooking_screen():
    pass
 
 class AbeanGui(Thread):
-    def __init__(self):
+    def __init__(self,m):
         Thread.__init__(self)
-        self.root = Tk()
-        self.root.title("Abean Groceries")
+        self.master=m
+        self.master.title("Abean Groceries")
         # self.root.geometry('450x300+200+200')
     def callback(self):
         # sleep(3)
         self.root.quit()
     def run(self):
+        pass
         # welcome_screen()
         # cooking_screen()
         # self.root.protocol("WM_DELETE_WINDOW", self.callback)
-        self.root.mainloop()
+
 
 
 if __name__ == '__main__':
-    AbeanGui().start()
+    root = Tk()
+    AbeanGui(root).start()
+    root.mainloop()
 
 # import tkinter as tk
 # import threading

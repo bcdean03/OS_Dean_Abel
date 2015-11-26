@@ -1,5 +1,5 @@
 __author__ = 'Abel'
-from tkinter import *
+from Tkinter import *
 import tkinter.messagebox  #Allow to pop message box
 
 app = Tk()#basic interface
@@ -27,7 +27,7 @@ yourName.pack()
 
 def beenClicked():
     radioValue =relStatus.get()
-    tkinter.messagebox.showinfo("You cliked",radioValue)
+    tkinter.messagebox.showinfo("You  cliked",radioValue)
     return
 #Radio button
 relStatus = StringVar()
