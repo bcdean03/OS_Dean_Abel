@@ -98,6 +98,19 @@ class AbeanGui(Thread):
         frame2.grid(column=0,row=0,columnspan=3,rowspan=2)
         # frame2.pack(side=RIGHT)
         # frame2.pack(fill=BOTH)
+
+        # scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
+        # scr_h1.pack(side=BOTTOM,fill=X)
+        # scr_h1.config(command=frame2.xview)
+        #
+        # scr_v1 = Scrollbar(frame2,orient=VERTICAL)
+        # scr_v1.pack(side=RIGHT,fill=Y)
+        # scr_v1.config(command=frame2.yview)
+
+
+
+
+
         label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
         label1.grid(row=0, column=1)
         label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
@@ -108,6 +121,8 @@ class AbeanGui(Thread):
         label1.grid(row=0, column=1)
         label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
         label1.grid(row=2,column=1)
+        label1= Label(frame2, text="Cinammon",bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
+        label1.grid(row=3,column=1)
         # self.root.button = Button(self.frame2, text="Helllllo")
         # self.root.button.grid(row=3, column=2, sticky=W)
         # label1.pack()
@@ -127,6 +142,9 @@ class AbeanGui(Thread):
         w1 = Canvas(frame2, width=20, height=20,background="red")
         w1.create_oval(6,6,16,16, fill='green', )
         w1.grid(row=2,column=0)
+        w1 = Canvas(frame2, width=20, height=20,background="red")
+        w1.create_oval(6,6,16,16, fill='green', )
+        w1.grid(row=3,column=0)
 
         # scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
         # scr_h1.pack(side=BOTTOM,fill=X)
