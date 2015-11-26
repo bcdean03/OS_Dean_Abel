@@ -15,38 +15,47 @@ class AbeanGui(Thread):
 
 
     def run(self):
-        self.welcome_screen()
+        # self.welcome_screen()
+        self.cooking_screen()
         # cooking_screen()
         # self.root.protocol("WM_DELETE_WINDOW", self.callback)
         # self.root.mainloop()
 
     def change_label(self):
-        # print self.producer_number.get()
-        if(re.search('[a-zA-Z]', self.entry_comsumer.get()) is None and
-                   re.search('[a-zA-Z]', self.entry_producer.get()) is None and
-                   re.search('[a-zA-Z]', self.entry_buffer_size.get()) is None):
+        if(self.entry_comsumer.get() is not "" and
+                       self.entry_producer.get() is not ""and
+                       self.entry_buffer_size.get()is not ""):
+            if(re.search('[a-zA-Z]', self.entry_comsumer.get()) is None and
+                       re.search('[a-zA-Z]', self.entry_producer.get()) is None and
+                       re.search('[a-zA-Z]', self.entry_buffer_size.get()) is None):
 
-            if int(self.entry_comsumer.get()) < 2053 and \
-                            int(self.entry_producer.get()) < 500:
-                print self.entry_comsumer.get()
-                print self.entry_producer.get()
-                print self.entry_buffer_size.get()
-                self.label_comsumer.destroy()
-                self.label_producer.destroy()
-                self.label_buffersize.destroy()
-                self.entry_comsumer.destroy()
-                self.entry_producer.destroy()
-                self.entry_buffer_size.destroy()
-                self.button1.destroy()
+                if int(self.entry_comsumer.get()) < 2053 and \
+                                int(self.entry_producer.get()) < 500 and\
+                                int(self.entry_buffer_size.get())>0:
+                    # print self.entry_comsumer.get()
+                    # print self.entry_producer.get()
+                    # print self.entry_buffer_size.get()
+                    self.comsumer_amount= self.entry_comsumer.get()
+                    self.producer_amount= self.entry_producer.get()
+                    self.buffer_amount=  self.entry_buffer_size.get()
+                    self.label_comsumer.destroy()
+                    self.label_producer.destroy()
+                    self.label_buffersize.destroy()
+                    self.entry_comsumer.destroy()
+                    self.entry_producer.destroy()
+                    self.entry_buffer_size.destroy()
+                    self.button1.destroy()
 
-                #
-                # self.button1.grid_forget()
-                self.cooking_screen()
+                    #
+                    # self.button1.grid_forget()
+                    self.cooking_screen()
+                else:
+                    tkinter.messagebox.showinfo("!!Error!!",detail="Producer(s) < 2053 : Consumer(s) < 500 : Buffer Size > 0")
+
             else:
-                tkinter.messagebox.showinfo("Error!",detail="Producers < 2053, Consumer < 50")
-
+                tkinter.messagebox.showinfo("!!Error!!",detail="One of your entries contains a letter or wrong symbol, only integers!")
         else:
-            tkinter.messagebox.showinfo("Error!",detail="One of your entries contains a letter or wrong symbol, only integers!")
+            tkinter.messagebox.showinfo("!!Error!!",detail="One of the entries is empty")
 
 
         # name ="Thanks for the click"+ yourName.get()
@@ -56,8 +65,8 @@ class AbeanGui(Thread):
         return
 
     def welcome_screen(self):
-        self.label_comsumer = Label(self.root,text="Number of Comsumer")
-        self.label_producer =Label(self.root,text="Number of Producer")
+        self.label_comsumer = Label(self.root,text="Number of Consumer(s)")
+        self.label_producer =Label(self.root,text="Number of Producer(s)")
         self.label_buffersize =Label(self.root,text="Buffer Size")
 
         self.entry_comsumer = Entry(self.root)
@@ -78,8 +87,12 @@ class AbeanGui(Thread):
 
 
     def cooking_screen(self):
+        # print self.comsumer_amount
+        # print self.producer_amount
+        # print self.buffer_amount
+
         # frame = Frame(self.root)
-        frame2 = Frame(self.root)
+        frame2 = Frame(self.root,bg="red")
         frame2.pack(side=RIGHT)
 
         w1 = Canvas(frame2, width=600, height=300,background="white", scrollregion=(0,0,3000,3000))
@@ -95,10 +108,38 @@ class AbeanGui(Thread):
 
         w1.config(xscrollcommand=scr_h1.set,yscrollcommand=scr_v1.set)
         w1.pack(fill=BOTH,expand=True)
+        w1.grid(fill=BOTH,expand=True)
 
         # inserted to see if it's actually scrolling
         w1.create_oval(0,0,50,50,fill='red')
         pass
+
+
+
+
+
+
+        # # frame = Frame(self.root)
+        # frame2 = Frame(self.root)
+        # frame2.pack(side=RIGHT)
+        #
+        # w1 = Canvas(frame2, width=600, height=300,background="white", scrollregion=(0,0,3000,3000))
+        #
+        #
+        # scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
+        # scr_h1.pack(side=BOTTOM,fill=X)
+        # scr_h1.config(command=w1.xview)
+        #
+        # scr_v1 = Scrollbar(frame2,orient=VERTICAL)
+        # scr_v1.pack(side=RIGHT,fill=Y)
+        # scr_v1.config(command=w1.yview)
+        #
+        # w1.config(xscrollcommand=scr_h1.set,yscrollcommand=scr_v1.set)
+        # w1.pack(fill=BOTH,expand=True)
+        #
+        # # inserted to see if it's actually scrolling
+        # w1.create_oval(0,0,50,50,fill='red')
+        # pass
 if __name__ == '__main__':
 
     root = Tk()
