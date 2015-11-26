@@ -4,8 +4,7 @@ from Tkinter import *
 from time import sleep
 
 
-def welcome_screen():
-    pass
+
 
 
 def cooking_screen():
@@ -30,21 +29,41 @@ def cooking_screen():
    #  w1.create_oval(0,0,50,50,fill='red')
    pass
 
+
 class AbeanGui(Thread):
     def __init__(self):
         Thread.__init__(self)
         self.root = Tk()
         self.root.title("Abean Groceries")
-        # self.root.geometry('450x300+200+200')
-    def callback(self):
-        # sleep(3)
-        self.root.quit()
+        self.root.geometry('450x300+200+200')
+
+
     def run(self):
-        # welcome_screen()
+        self.welcome_screen()
         # cooking_screen()
         # self.root.protocol("WM_DELETE_WINDOW", self.callback)
         self.root.mainloop()
 
+    def changeLabel(self):
+        print self.producer_number.get()
+        # name ="Thanks for the click"+ yourName.get()
+        # labelText.set(name)
+        # yourName.delete(0,END)
+        # yourName.insert(0,"My name is Abel")
+        return
+    def welcome_screen(self):
+        producer_number_variable = StringVar(None)#Accept information from customer
+        self.producer_number = Entry(self.root, textvariable= producer_number_variable)
+        self.producer_number.pack()
+        # print producer_number_variable
+        print self.producer_number
+        # custName = StringVar(None)#Accept information from customer
+        # # custName.set("Howdy")
+        # yourName= Entry(self.root, textvariable=custName)
+        # yourName.pack()
+
+        button1 = Button(self.root, text="Click Here",width=20,command=self.changeLabel)
+        button1.pack(side='bottom',padx=15,pady=15)#Can do bottom,top etc...
 
 if __name__ == '__main__':
     AbeanGui().start()
