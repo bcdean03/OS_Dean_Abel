@@ -92,26 +92,32 @@ class AbeanGui(Thread):
         # print self.buffer_amount
 
         # frame = Frame(self.root)
-        frame2 = Frame(self.root,bg="red")
-        frame2.pack(side=RIGHT)
+        self.frame2 = Frame(self.root,bg="red", width=1000, height=1000)
+        self.frame2.grid(rowspan =100, columnspan=100)
+        # frame2.pack(side=RIGHT)
+        # frame2.pack(fill=BOTH)
+        # label1 = Label(self.frame2, text="Hello")
+        # label1.grid(row=3, column=1)
+        self.root.button = Button(self.frame2, text="Helllllo")
+        self.root.button.grid(row=3, column=2, stick=W)
+        # label1.pack()
+        # w1 = Canvas(frame2, width=50, height=30,background="white", scrollregion=(0,0,3000,3000))
 
-        w1 = Canvas(frame2, width=600, height=300,background="white", scrollregion=(0,0,3000,3000))
 
+        # scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
+        # scr_h1.pack(side=BOTTOM,fill=X)
+        # scr_h1.config(command=w1.xview)
+        #
+        # scr_v1 = Scrollbar(frame2,orient=VERTICAL)
+        # scr_v1.pack(side=RIGHT,fill=Y)
+        # scr_v1.config(command=w1.yview)
 
-        scr_h1 = Scrollbar(frame2,orient=HORIZONTAL)
-        scr_h1.pack(side=BOTTOM,fill=X)
-        scr_h1.config(command=w1.xview)
-
-        scr_v1 = Scrollbar(frame2,orient=VERTICAL)
-        scr_v1.pack(side=RIGHT,fill=Y)
-        scr_v1.config(command=w1.yview)
-
-        w1.config(xscrollcommand=scr_h1.set,yscrollcommand=scr_v1.set)
-        w1.pack(fill=BOTH,expand=True)
-        w1.grid(fill=BOTH,expand=True)
-
-        # inserted to see if it's actually scrolling
-        w1.create_oval(0,0,50,50,fill='red')
+        # w1.config(xscrollcommand=scr_h1.set,yscrollcommand=scr_v1.set)
+        # # w1.pack(fill=BOTH,expand=True)
+        # w1.grid(root=0, column=0)
+        #
+        # # inserted to see if it's actually scrolling
+        # w1.create_oval(0,0,50,50,fill='red')
         pass
 
 
