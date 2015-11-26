@@ -31,12 +31,17 @@ class AbeanGui(Thread):
                 print self.entry_comsumer.get()
                 print self.entry_producer.get()
                 print self.entry_buffer_size.get()
-                self.label_comsumer.grid_forget()
-                self.label_producer.grid_forget()
-                self.label_buffersize.grid_forget()
+                self.label_comsumer.destroy()
+                self.label_producer.destroy()
+                self.label_buffersize.destroy()
+                self.entry_comsumer.destroy()
+                self.entry_producer.destroy()
+                self.entry_buffer_size.destroy()
+                self.button1.destroy()
 
-                self.button1.grid_forget()
-                # self.cooking_screen()
+                #
+                # self.button1.grid_forget()
+                self.cooking_screen()
             else:
                 tkinter.messagebox.showinfo("Error!",detail="Producers < 2053, Consumer < 50")
 
