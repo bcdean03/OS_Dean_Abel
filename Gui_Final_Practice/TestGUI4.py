@@ -114,11 +114,12 @@ class AbeanGui(Thread):
             # label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
             # label1.grid(row=row, column=1)
 
-            w1 = Canvas(frame2, width=20, height=20,background="red")
-            w1.create_oval(6,6,16,16, fill='green')
+            w1 = Canvas(frame2, width=20, height=20,background="blue")
+            w1.create_oval(6,6,16,16, fill='red')
             w1.grid(row=row,column=0)
 
             if row % 2 == 0:
+                #must be flat, groove, raised, ridge, solid, or sunken
                 label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
                 label1.grid(row=row, column=1)
                 label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
