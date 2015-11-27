@@ -14,7 +14,7 @@ from gui_abean import AbeanGui
 lock = RLock()
 
 
-def main(consumer_num,producer_num,buffer_size):
+def main(consumer_num,producer_num,buffer_size,root):
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
@@ -45,6 +45,7 @@ def main(consumer_num,producer_num,buffer_size):
     except socket.error as error:
         print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
         s.close()
+        root.destroy()
         exit(0)
     # finally:
     print "!!CLOSING!!"

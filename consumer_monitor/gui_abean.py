@@ -16,7 +16,7 @@ class AbeanGui(Thread):
         Thread.__init__(self)
         self.root = master
         self.root.title("Abean Groceries")
-        self.root.geometry('450x300+200+200')
+        # self.root.geometry('450x300+200+200')
 
     def run(self):
         self.welcome_screen()
@@ -100,7 +100,7 @@ class AbeanGui(Thread):
         self.entry_buffer_size.grid(row=2,column=1,sticky=E)
 
         self.button1 = Button(self.root, text="Done",command=self.change_label)
-        self.button1.grid(row=4,column=1,sticky=S)
+        self.button1.grid(row=4,column=1,sticky=W+E+N+S)
 
     def onFrameConfigure(self,canvas):
         '''Reset the scroll region to encompass the inner frame'''
@@ -110,7 +110,7 @@ class AbeanGui(Thread):
         # print self.comsumer_amount
         # print self.producer_amount
         # print self.buffer_amount
-        # main(self.comsumer_amount,self.producer_amount,self.buffer_amount)
+        self.main2(self.comsumer_amount,self.producer_amount,self.buffer_amount,self.root)
 
         self.color="green"
         canvas = Canvas(self.root, borderwidth=0, background="blue",width=700,height=700)
@@ -128,7 +128,42 @@ class AbeanGui(Thread):
         frame.bind("<Configure>", lambda event, canvas=canvas: self.onFrameConfigure(canvas))
         self.consumers(frame)
         # self.populate_frame(frame,100)
+    def main2(self,consumer_num,producer_num,buffer_size,root):
+        # consumer_num = raw_input("How many consumers do you want?")
+        # producer_num = raw_input("How many producers do you want to produce?")
+        # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
+        # consumer_num = 500
+        # producer_num = 250
+        # buffer_size = 16
 
+        # s = socket.socket()
+        # s.connect(("192.168.1.141",5002))#request a connection with the listening server
+        # list= "%s %s"%(producer_num,buffer_size)
+        # s.send(list)
+        # # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
+        # # data = s.recv(1024)
+        # # if not data:
+        try:
+            s = socket.socket()
+            # s.connect(("192.168.1.141",5002))#request a connection with the listening server
+            s.connect(("192.168.1.141",5002))#request a connection with the listening server
+            # s.connect(("10.0.0.7",5002))#request a connection with the listening server
+            str_of_list= "%s %s"%(producer_num,buffer_size)
+            s.send(str_of_list)
+            data = s.recv(1024)
+            if data != "Ready...":
+                print "Error happened"
+                s.close()
+                exit(0)
+                # raise SystemExit
+        except socket.error as error:
+            print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
+            s.close()
+            root.destroy()
+            exit(0)
+        # finally:
+        print "!!CLOSING!!"
+        s.close()
     def consumers(self,frame2):
 
         print "+++++++Going to make",self.comsumer_amount,"Consumers+++++++"
