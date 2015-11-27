@@ -100,24 +100,11 @@ class AbeanGui(Thread):
 
         frame.bind("<Configure>", lambda event, canvas=canvas: self.onFrameConfigure(canvas))
         self.consumers(frame)
-        # self.populate_frame(frame,100)
-    def main(self):
-        # print self.consumer_amount
-        # print self.producer_amount
-        # print self.buffer_amount
 
-        # s = socket.socket()
-        # s.connect(("192.168.1.141",5002))#request a connection with the listening server
-        # list= "%s %s"%(producer_num,buffer_size)
-        # s.send(list)
-        # # print "!!!!!!Waiting to receive 'Ready'!!!!!!!!!"
-        # # data = s.recv(1024)
-        # # if not data:
+    def main(self):
         try:
             s = socket.socket()
-            # s.connect(("192.168.1.141",5002))#request a connection with the listening server
             s.connect(("192.168.1.141",5002))#request a connection with the listening server
-            # s.connect(("10.0.0.7",5002))#request a connection with the listening server
             str_of_list= "%s %s"%(self.producer_amount,self.buffer_amount)
             s.send(str_of_list)
             data = s.recv(1024)
@@ -125,33 +112,27 @@ class AbeanGui(Thread):
                 print "Error happened"
                 s.close()
                 exit(0)
-                # raise SystemExit
         except socket.error as error:
             print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
             s.close()
             root.destroy()
             exit(0)
-        # finally:
         print "!!CLOSING!!"
         s.close()
     def consumers(self,frame2):
 
         print "+++++++Going to make",self.consumer_amount,"Consumers+++++++"
         id = 0
-        # try:
-        # r=2
         for i in xrange(int(self.consumer_amount)):
-            # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
             try:
-                # food, recipe = get_food_and_recipe(create_recipe_dictionary())
 
-                food,ingredient = get_food_and_recipe(create_recipe_dictionary())
+                food, ingredient = get_food_and_recipe(create_recipe_dictionary())
 
                 client_label= Label(frame2, text="Client_{} ->".format(id+1), bg="red", font=tkFont.Font(family="comic sans ms", size =20),bd=10,relief="ridge", anchor=N)
                 client_label.grid(row=i, column=4,sticky=W+E+N+S)
                 food_label= Label(frame2, text=food+":", bg="red", font=tkFont.Font(family="comic sans ms", size =20),bd=10,relief="ridge", anchor=N)
                 food_label.grid(row=i, column=5,sticky=W+E+N+S)
-                ingredient_labels_list={}
+                ingredient_labels_list = {}
                 ig=5
                 for b in xrange(len(ingredient)):
                     ig+=1
@@ -163,16 +144,15 @@ class AbeanGui(Thread):
                 oval = w1.create_oval(6,6,16,16, fill='red')
                 w1.grid(row=i,column=0)
 
-                client_obj=DisplayClient(w1,oval,client_label,food_label,ingredient_labels_list)
-                Thread(target=self.client_socket_thr, args=(food,ingredient,"Client_{}".format(id),client_obj)).start()
-                # sleep(.01)
+                client_obj=DisplayClient(w1,oval,client_label, food_label, ingredient_labels_list)
+                Thread(target=self.client_socket_thr, args=(food, ingredient, "Client_{}".format(id), client_obj)).start()
             except Exception as e:
                 print "Exception:",e
                 print "Too many clients and producers combined to handle."
                 print "Stopping at client:",id
                 break
             id += 1
-        print "{{{{{Finishing making",self.consumer_amount,"Consumers}}}}}"
+        print "{{{{{Finishing making", self.consumer_amount, "Consumers}}}}}"
 
     def client_socket_thr(self,food,recipe_list,c_n,client_obj):
         '''
@@ -181,9 +161,7 @@ class AbeanGui(Thread):
         :param c_n: client name
         :return:
         '''
-        # buffer_server = ("192.168.1.141",5007)
         buffer_server = ("192.168.1.141",5007)
-        # buffer_server = ("10.0.0.7",5007)
 
         s = socket.socket()
         while True:
@@ -197,7 +175,6 @@ class AbeanGui(Thread):
         # print c_n,"Connected to:->",buffer_server
         # print c_n,"Sending:->",str_list
 
-        #Mabey put try catch arround all of this TODO
         #lock.acquire()
         #print c_n,"Food:->",food,": Recipe_list:->",recipe_list
         #lock.release()
@@ -208,20 +185,16 @@ class AbeanGui(Thread):
             client_obj.change_label_color(client_obj.ingredient[i],"yellow")
             s.send(i)
 
-            ####
-            # CAREFUL COULD HAVE TO DO SOME TYPE OF WAITING TO MAKE SURE THE TCP CONNECTION DOESNT CLOSE BECAUSE ITS WAITING
-            # ON A PRODUCER TO PRODUCE SOMETHING INTO THE QUEUE. IT MIGHT BE TOO LONG.
-            ####
-            picture = s.recv(1024)
-            if not picture:
+            ingr = s.recv(1024)
+            if not ingr:
                 # print c_n, "Stopped receiving....."
                 continue
             else:
                 # self.client_obj.change_label_color( self.client_obj.clientName,a[1])
                 # self.client_obj.change_label_color( self.client_obj.food,a[2])
-                client_obj.change_label_color( client_obj.ingredient[i],"green")
+                client_obj.change_label_color( client_obj.ingredient[ingr],"green")
                 #lock.acquire()
-                #print "<<<<",c_n, "Received:->",picture
+                #print "<<<<",c_n, "Received:->",ingr
                 #lock.release()
         try:
             #print ">>>>",c_n,"Sending:->'Done'"
