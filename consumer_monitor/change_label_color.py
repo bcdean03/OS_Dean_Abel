@@ -11,5 +11,8 @@ class DisplayClient:
     def change_label_color(self,l_obj,color):
         l_obj.config(bg=color)
 
+    def change_label_name(self,l_obj,name):
+        l_obj.config(text=name)
+
     def change_oval(self,color):
         self.canvas.itemconfig(self.oval,fill=color)

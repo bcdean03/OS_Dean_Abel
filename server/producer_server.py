@@ -100,7 +100,8 @@ def setup_all(user_info):
         else:
             for i in xrange(0, num_producers):
                 try:
-                    Producer(dictionary_food,"Producer_{}".format(i+1)).start()
+                    Producer(dictionary_food,"P_{}".format(i+1)).start()
+                    # Producer(dictionary_food,"Producer_{}".format(i+1)).start()
                 except Exception as e:
                     print "Exception:",e
                     print "Cant handle that many producers... Too poor to pay them all!"

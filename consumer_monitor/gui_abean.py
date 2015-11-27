@@ -184,11 +184,14 @@ class AbeanGui(Thread):
             client_obj.change_label_color(client_obj.ingredient[i],"yellow")
             s.send(i)
 
-            ingr = s.recv(1024)
+            l = str(s.recv(1024)).split(" ")
+            ingr = l[0]
+            producer = l[1]
             if not ingr:
                 continue
             else:
                 client_obj.change_label_color(client_obj.ingredient[ingr],"green")
+                client_obj.change_label_name(client_obj.ingredient[ingr],producer)
                 #lock.acquire()
                 #print "<<<<",c_n, "Received:->",ingr
                 #lock.release()
