@@ -11,36 +11,20 @@ from change_label_color import DisplayClient
 from consumer_monitor import *
 
 
+
 class AbeanGui(Thread):
+    consumer_amount = -1
     def __init__(self,master):
         Thread.__init__(self)
         self.root = master
         self.root.title("Abean Groceries")
-        # self.root.geometry('450x300+200+200')
+        self.done_lock = RLock()
+        self.done_counter=0
 
     def run(self):
         self.welcome_screen()
-        # self.cooking_screen()
-        # while True:
-        #     # c=raw_input("Enter Color of label:")
-        #     # self.label.config(bg=c)
-        #     # c2=raw_input("Enter Color of oval:")
-        #     # self.w1.itemconfig(self.oval,fill=c2)
-        #     c=raw_input("Enter 3 Color(oval,clientName,food)")
-        #     a=c.split(" ")
-        #     self.client_obj.change_oval(a[0])
-        #     self.client_obj.change_label_color( self.client_obj.clientName,a[1])
-        #     self.client_obj.change_label_color( self.client_obj.food,a[2])
-        #     # c2=raw_input("Enter name and color").split(" ")
-        #     a=""
-        #     while a!="1":
-        #         c2=raw_input("Enter name and color")
-        #         a=c2.split(" ")
-        #         self.client_obj.change_label_color(self.client_obj.ingredient[a[0]],a[1])
 
-        # cooking_screen()
-        # self.root.protocol("WM_DELETE_WINDOW", self.callback)
-        # self.root.mainloop()
+
 
     def change_label(self):
         if(self.entry_comsumer.get() is not "" and
@@ -53,10 +37,8 @@ class AbeanGui(Thread):
                 if int(self.entry_comsumer.get()) < 2053 and \
                                 int(self.entry_producer.get()) < 500 and\
                                 int(self.entry_buffer_size.get())>0:
-                    # print self.entry_comsumer.get()
-                    # print self.entry_producer.get()
-                    # print self.entry_buffer_size.get()
-                    self.comsumer_amount= self.entry_comsumer.get()
+
+                    self.consumer_amount= self.entry_comsumer.get()
                     self.producer_amount= self.entry_producer.get()
                     self.buffer_amount=  self.entry_buffer_size.get()
                     self.label_comsumer.destroy()
@@ -107,7 +89,7 @@ class AbeanGui(Thread):
         canvas.configure(scrollregion=canvas.bbox("all"))
 
     def cooking_screen(self):
-        # print self.comsumer_amount
+        # print self.consumer_amount
         # print self.producer_amount
         # print self.buffer_amount
         self.main()
@@ -129,7 +111,7 @@ class AbeanGui(Thread):
         self.consumers(frame)
         # self.populate_frame(frame,100)
     def main(self):
-        # print self.comsumer_amount
+        # print self.consumer_amount
         # print self.producer_amount
         # print self.buffer_amount
 
@@ -163,11 +145,11 @@ class AbeanGui(Thread):
         s.close()
     def consumers(self,frame2):
 
-        print "+++++++Going to make",self.comsumer_amount,"Consumers+++++++"
+        print "+++++++Going to make",self.consumer_amount,"Consumers+++++++"
         id = 0
         # try:
         # r=2
-        for i in xrange(int(self.comsumer_amount)):
+        for i in xrange(int(self.consumer_amount)):
             # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
             try:
                 # food, recipe = get_food_and_recipe(create_recipe_dictionary())
@@ -199,7 +181,7 @@ class AbeanGui(Thread):
                 print "Stopping at client:",id
                 break
             id += 1
-        print "{{{{{Finishing making",self.comsumer_amount,"Consumers}}}}}"
+        print "{{{{{Finishing making",self.consumer_amount,"Consumers}}}}}"
 
     def client_socket_thr(self,food,recipe_list,c_n,client_obj):
         '''
@@ -225,13 +207,13 @@ class AbeanGui(Thread):
         # print c_n,"Sending:->",str_list
 
         #Mabey put try catch arround all of this TODO
-        lock.acquire()
-        print c_n,"Food:->",food,": Recipe_list:->",recipe_list
-        lock.release()
+        #lock.acquire()
+        #print c_n,"Food:->",food,": Recipe_list:->",recipe_list
+        #lock.release()
         for i in recipe_list:
-            lock.acquire()
-            print ">>>>",c_n,"Sending:->",i
-            lock.release()
+            #lock.acquire()
+            #print ">>>>",c_n,"Sending:->",i
+            #lock.release()
             client_obj.change_label_color(client_obj.ingredient[i],"yellow")
             s.send(i)
 
@@ -247,74 +229,28 @@ class AbeanGui(Thread):
                 # self.client_obj.change_label_color( self.client_obj.clientName,a[1])
                 # self.client_obj.change_label_color( self.client_obj.food,a[2])
                 client_obj.change_label_color( client_obj.ingredient[i],"green")
-                lock.acquire()
-                print "<<<<",c_n, "Received:->",picture
-                lock.release()
+                #lock.acquire()
+                #print "<<<<",c_n, "Received:->",picture
+                #lock.release()
         try:
-            print ">>>>",c_n,"Sending:->'Done'"
+            #print ">>>>",c_n,"Sending:->'Done'"
             s.send("Done")        # print c_n,"Received:->",received
             client_obj.change_oval("green")
             client_obj.change_label_color(client_obj.clientName,"orange")
             client_obj.change_label_color(client_obj.food,"purple")
+            self.done_lock.acquire()
+            self.done_counter+=1
+            print self.done_counter
+            print self.consumer_amount
+            self.done_lock.release()
             s.close()
+            if(self.done_counter== self.consumer_amount):
+                tkinter.messagebox.showinfo("Done Abean",detail="All The {} clients have gotten their Ingredient".format(self.consumer_amount))
         except socket.error as error:
             print "{"+error+"}","Wasn't able to send 'Done' because lost connection"
 
 
-    def populate_frame(self,frame2,n):
-            # self.label= Label(frame2, text="BONE", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            # self.label.grid(row=2, column=4)
-            # self.w1 = Canvas(frame2, width=20, height=20,background="red")
-            # self.oval = self.w1.create_oval(6,6,16,16, fill='green')
-            # self.w1.grid(row=2,column=0)
 
-            ingredient=['a','b','c']
-            client_label= Label(frame2, text="Client_1->", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            client_label.grid(row=2, column=4)
-            food_label= Label(frame2, text="Burger:", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            food_label.grid(row=2, column=5)
-            ingredient_labels_list={}
-            ig=5
-            for i in xrange(len(ingredient)):
-                ig+=1
-                ig_label= Label(frame2, text=ingredient[i], bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-                ig_label.grid(row=2, column=ig)
-                ingredient_labels_list[ingredient[i]]=ig_label
-
-            w1 = Canvas(frame2, width=20, height=20,background="red")
-            oval = w1.create_oval(6,6,16,16, fill='green')
-            w1.grid(row=2,column=0)
-
-            self.client_obj=DisplayClient(w1,oval,client_label,food_label,ingredient_labels_list)#canvas,oval,clientName,food,ingredient
-
-
-     # for row in range(n):
-     #        # label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
-     #        # label1.grid(row=row, column=1)
-     #
-     #
-     #        w1 = Canvas(frame2, width=20, height=20,background="red")
-     #        w1.create_oval(6,6,16,16, fill='green')
-     #        w1.grid(row=row,column=0)
-
-            # if row % 2 == 0:
-            #     label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=1)
-            #     label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=2)
-            #     label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=3)
-            #     label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=4)
-            # else:
-            #     label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=1)
-            #     label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=2)
-            #     label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=3)
-            #     label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            #     label1.grid(row=row, column=4)
 
 if __name__ == '__main__':
 
