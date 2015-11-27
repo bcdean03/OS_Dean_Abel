@@ -185,8 +185,8 @@ class AbeanGui(Thread):
                     ig_label.grid(row=i, column=ig, sticky=W+E+N+S)
                     ingredient_labels_list[ingredient[b]]=ig_label
 
-                w1 = Canvas(frame2, width=20, height=20,background="red")
-                oval = w1.create_oval(6,6,16,16, fill='green')
+                w1 = Canvas(frame2, width=20, height=20,background="blue")
+                oval = w1.create_oval(6,6,16,16, fill='red')
                 w1.grid(row=i,column=0)
 
                 client_obj=DisplayClient(w1,oval,client_label,food_label,ingredient_labels_list)
