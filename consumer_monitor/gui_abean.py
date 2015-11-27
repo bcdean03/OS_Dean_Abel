@@ -192,7 +192,7 @@ class AbeanGui(Thread):
             else:
                 # self.client_obj.change_label_color( self.client_obj.clientName,a[1])
                 # self.client_obj.change_label_color( self.client_obj.food,a[2])
-                client_obj.change_label_color( client_obj.ingredient[ingr],"green")
+                client_obj.change_label_color(client_obj.ingredient[ingr],"green")
                 #lock.acquire()
                 #print "<<<<",c_n, "Received:->",ingr
                 #lock.release()
