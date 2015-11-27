@@ -112,7 +112,6 @@ class AbeanGui(Thread):
         # print self.buffer_amount
         self.main()
 
-        self.color="green"
         canvas = Canvas(self.root, borderwidth=0, background="blue",width=700,height=700)
         frame = Frame(canvas, background="blue")
         vsb = Scrollbar(self.root, orient="vertical", command=canvas.yview)
@@ -191,7 +190,7 @@ class AbeanGui(Thread):
                 w1.grid(row=i,column=0)
 
                 client_obj=DisplayClient(w1,oval,client_label,food_label,ingredient_labels_list)
-                # Thread(target=self.client_socket_thr, args=(food,ingredient,"Client_{}".format(id),client_obj)).start()
+                Thread(target=self.client_socket_thr, args=(food,ingredient,"Client_{}".format(id),client_obj)).start()
                 # sleep(.01)
             except Exception as e:
                 print "Exception:",e
@@ -217,7 +216,7 @@ class AbeanGui(Thread):
             try:
                 s.connect(buffer_server)#request a connection with the listening server
                 break
-            except socket.error as error:
+            except socket.error:
                 print "Attempting to reconnect"
                 s.close()
                 s=socket.socket()
@@ -232,6 +231,7 @@ class AbeanGui(Thread):
             lock.acquire()
             print ">>>>",c_n,"Sending:->",i
             lock.release()
+            client_obj.change_label_color(client_obj.ingredient[i],"yellow")
             s.send(i)
 
             ####
@@ -243,13 +243,18 @@ class AbeanGui(Thread):
                 # print c_n, "Stopped receiving....."
                 continue
             else:
-                update_gui(picture)#finish it later TODO!!!
+                # self.client_obj.change_label_color( self.client_obj.clientName,a[1])
+                # self.client_obj.change_label_color( self.client_obj.food,a[2])
+                client_obj.change_label_color( client_obj.ingredient[i],"green")
                 lock.acquire()
                 print "<<<<",c_n, "Received:->",picture
                 lock.release()
         try:
             print ">>>>",c_n,"Sending:->'Done'"
             s.send("Done")        # print c_n,"Received:->",received
+            client_obj.change_oval("green")
+            client_obj.change_label_color(client_obj.clientName,"orange")
+            client_obj.change_label_color(client_obj.food,"purple")
             s.close()
         except socket.error as error:
             print "{"+error+"}","Wasn't able to send 'Done' because lost connection"
