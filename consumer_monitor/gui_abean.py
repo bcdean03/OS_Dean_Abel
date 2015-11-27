@@ -9,14 +9,14 @@ from consumer_monitor import *
 
 
 class AbeanGui(Thread):
-    consumer_amount = -1
+    # consumer_amount = -1
 
     def __init__(self,master):
         Thread.__init__(self)
         self.root = master
         self.root.title("Abean Groceries")
-        self.done_lock = RLock()
-        self.done_counter=0
+        # self.done_lock = RLock()
+        # self.done_counter=0
 
     def run(self):
         self.welcome_screen()
@@ -195,9 +195,9 @@ class AbeanGui(Thread):
             client_obj.change_oval("green")
             client_obj.change_label_color(client_obj.clientName,"orange")
             client_obj.change_label_color(client_obj.food,"purple")
-            self.done_lock.acquire()
-            self.done_counter+=1
-            self.done_lock.release()
+            # self.done_lock.acquire()
+            # self.done_counter+=1
+            # self.done_lock.release()
             # if(self.done_counter== int(self.consumer_amount)):
             #     tkinter.messagebox.showinfo("Done Abean",detail="All The clients have gotten their Ingredient")
             s.close()
