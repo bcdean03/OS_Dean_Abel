@@ -46,20 +46,29 @@ def populate(frame2):
     for row in range(100):
         # label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
         # label1.grid(row=row, column=1)
-        label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-        label1.grid(row=row, column=1)
+
         w1 = Canvas(frame2, width=20, height=20,background="red")
         w1.create_oval(6,6,16,16, fill='green')
         w1.grid(row=row,column=0)
 
-
-
-        label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-        label1.grid(row=row, column=2)
-        label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-        label1.grid(row=row, column=3)
-        label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-        label1.grid(row=row, column=4)
+        if row % 2 == 0:
+            label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=1)
+            label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=2)
+            label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=3)
+            label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=4)
+        else:
+            label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=1)
+            label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=2)
+            label1= Label(frame2, text="Bread", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=3)
+            label1= Label(frame2, text="Bread", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+            label1.grid(row=row, column=4)
 
 
     # for row in range(100):
@@ -76,8 +85,8 @@ def onFrameConfigure(canvas):
     canvas.configure(scrollregion=canvas.bbox("all"))
 
 root = Tk()
-canvas = Canvas(root, borderwidth=0, background="red",width=700,height=700)
-frame = Frame(canvas, background="red")
+canvas = Canvas(root, borderwidth=0, background="blue",width=700,height=700)
+frame = Frame(canvas, background="blue")
 vsb = Scrollbar(root, orient="vertical", command=canvas.yview)
 vsb2 = Scrollbar(root, orient="horizontal", command=canvas.xview)
 canvas.configure(xscrollcommand=vsb2.set ,yscrollcommand=vsb.set)
