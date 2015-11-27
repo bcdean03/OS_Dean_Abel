@@ -16,7 +16,7 @@ class Producer(Thread):
             # print "Ingredient choice:",ingredient
             # lock.release()
             if self.dictionary_food[ingredient].qsize() != self.dictionary_food[ingredient].maxsize:
-                self.dictionary_food[ingredient].put(str(self.name+" "+ingredient))
+                self.dictionary_food[ingredient].put(str(ingredient))
                 sleep(randint(0, 5))
 
             if self.dictionary_food[ingredient].maxsize > 15:
