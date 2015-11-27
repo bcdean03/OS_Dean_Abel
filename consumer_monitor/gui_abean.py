@@ -129,12 +129,9 @@ class AbeanGui(Thread):
         self.consumers(frame)
         # self.populate_frame(frame,100)
     def main(self):
-        # consumer_num = raw_input("How many consumers do you want?")
-        # producer_num = raw_input("How many producers do you want to produce?")
-        # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-        # consumer_num = 500
-        # producer_num = 250
-        # buffer_size = 16
+        # print self.comsumer_amount
+        # print self.producer_amount
+        # print self.buffer_amount
 
         # s = socket.socket()
         # s.connect(("192.168.1.141",5002))#request a connection with the listening server
@@ -146,9 +143,9 @@ class AbeanGui(Thread):
         try:
             s = socket.socket()
             # s.connect(("192.168.1.141",5002))#request a connection with the listening server
-            s.connect(("192.5168.1.141",5002))#request a connection with the listening server
+            s.connect(("192.168.1.141",5002))#request a connection with the listening server
             # s.connect(("10.0.0.7",5002))#request a connection with the listening server
-            str_of_list= "%s %s"%(self.producer_num,self.buffer_size)
+            str_of_list= "%s %s"%(self.producer_amount,self.buffer_amount)
             s.send(str_of_list)
             data = s.recv(1024)
             if data != "Ready...":
