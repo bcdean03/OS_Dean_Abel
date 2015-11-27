@@ -45,10 +45,10 @@ yscrollbar.config(command=canvas.yview)
 # label6= Label(canvas, text="Cinammon", bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
 # label6.grid(row=3,column=1)
 # canvas.config(scrollregion=canvas.bbox("all"))
-frame2 = Frame(frame, borderwidth=5, bg='blue')
+frame2 = Frame(canvas, borderwidth=5, bg='blue')
 frame2.grid_rowconfigure(0, weight=1)
 frame2.grid_columnconfigure(0, weight=1)
-frame2.grid()
+frame2.grid(row=0, column=1)
 
 label1 = Label(frame2, text="Hello", bd=10,relief="ridge", anchor=N)
 label1.grid(row=0, column=1)
@@ -65,7 +65,7 @@ label1.grid(row=3,column=1)
 label1= Label(frame2, text="Cinammon", bg="green", font=tkFont.Font(family="Helvetica", size =40),bd=10,relief="ridge", anchor=N)
 label1.grid(row=4,column=1)
 
-canvas.create_window(400, 400, window=frame2)
+# canvas.create_window(400, 400, window=frame2)
 
 canvas.create_oval(0,1,50,50,fill='red')
 
