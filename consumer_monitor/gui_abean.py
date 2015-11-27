@@ -1,6 +1,5 @@
 __author__ = 'abelamadou'
 __author__ = 'abelamadou'
-__author__ = 'abelamadou'
 __author__ = 'Dean'
 from threading import Thread
 from Tkinter import *
@@ -9,6 +8,7 @@ import re
 import tkFont
 from PIL import Image, ImageTk
 from change_label_color import DisplayClient
+from consumer_monitor import *
 
 
 class AbeanGui(Thread):
@@ -19,28 +19,24 @@ class AbeanGui(Thread):
         self.root.geometry('450x300+200+200')
 
     def run(self):
-        # self.welcome_screen()
-        self.cooking_screen()
-        while True:
-            # c=raw_input("Enter Color of label:")
-            # self.label.config(bg=c)
-            # c2=raw_input("Enter Color of oval:")
-            # self.w1.itemconfig(self.oval,fill=c2)
-            c=raw_input("Enter 3 Color(oval,clientName,food)")
-            a=c.split(" ")
-            self.client_obj.change_oval(a[0])
-            self.client_obj.change_label_color( self.client_obj.clientName,a[1])
-            self.client_obj.change_label_color( self.client_obj.food,a[2])
-            # c2=raw_input("Enter name and color").split(" ")
-            a=""
-            while a!="1":
-                c2=raw_input("Enter name and color")
-                a=c2.split(" ")
-                self.client_obj.change_label_color(self.client_obj.ingredient[a[0]],a[1])
-
-            # self.client_obj
-            # pass
-
+        self.welcome_screen()
+        # self.cooking_screen()
+        # while True:
+        #     # c=raw_input("Enter Color of label:")
+        #     # self.label.config(bg=c)
+        #     # c2=raw_input("Enter Color of oval:")
+        #     # self.w1.itemconfig(self.oval,fill=c2)
+        #     c=raw_input("Enter 3 Color(oval,clientName,food)")
+        #     a=c.split(" ")
+        #     self.client_obj.change_oval(a[0])
+        #     self.client_obj.change_label_color( self.client_obj.clientName,a[1])
+        #     self.client_obj.change_label_color( self.client_obj.food,a[2])
+        #     # c2=raw_input("Enter name and color").split(" ")
+        #     a=""
+        #     while a!="1":
+        #         c2=raw_input("Enter name and color")
+        #         a=c2.split(" ")
+        #         self.client_obj.change_label_color(self.client_obj.ingredient[a[0]],a[1])
 
         # cooking_screen()
         # self.root.protocol("WM_DELETE_WINDOW", self.callback)
@@ -70,7 +66,6 @@ class AbeanGui(Thread):
                     self.entry_producer.destroy()
                     self.entry_buffer_size.destroy()
                     self.button1.destroy()
-
                     self.cooking_screen()
                 else:
                     tkinter.messagebox.showinfo("!!Error!!",detail="Producer(s) < 2053 : Consumer(s) < 500 : Buffer Size > 0")
@@ -115,11 +110,13 @@ class AbeanGui(Thread):
         # print self.comsumer_amount
         # print self.producer_amount
         # print self.buffer_amount
+        # main(self.comsumer_amount,self.producer_amount,self.buffer_amount)
+
         self.color="green"
-        canvas = Canvas(root, borderwidth=0, background="blue",width=700,height=700)
+        canvas = Canvas(self.root, borderwidth=0, background="blue",width=700,height=700)
         frame = Frame(canvas, background="blue")
-        vsb = Scrollbar(root, orient="vertical", command=canvas.yview)
-        vsb2 = Scrollbar(root, orient="horizontal", command=canvas.xview)
+        vsb = Scrollbar(self.root, orient="vertical", command=canvas.yview)
+        vsb2 = Scrollbar(self.root, orient="horizontal", command=canvas.xview)
         canvas.configure(xscrollcommand=vsb2.set ,yscrollcommand=vsb.set)
         # canvas.configure()
 
@@ -129,7 +126,101 @@ class AbeanGui(Thread):
         canvas.create_window((4,4), window=frame, anchor="nw")
 
         frame.bind("<Configure>", lambda event, canvas=canvas: self.onFrameConfigure(canvas))
-        self.populate_frame(frame,100)
+        self.consumers(frame)
+        # self.populate_frame(frame,100)
+
+    def consumers(self,frame2):
+
+        print "+++++++Going to make",self.comsumer_amount,"Consumers+++++++"
+        id = 0
+        # try:
+        # r=2
+        for i in xrange(int(self.comsumer_amount)):
+            # Thread(target=client_socket, args=(x,"Client_{}".format(x))).start()
+            try:
+                # food, recipe = get_food_and_recipe(create_recipe_dictionary())
+
+                food,ingredient = get_food_and_recipe(create_recipe_dictionary())
+
+                client_label= Label(frame2, text="Client_{} ->".format(id+1), bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+                client_label.grid(row=i, column=4)
+                food_label= Label(frame2, text=food+":", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
+                food_label.grid(row=i, column=5)
+                ingredient_labels_list={}
+                ig=5
+                for b in xrange(len(ingredient)):
+                    ig+=1
+                    ig_label= Label(frame2, text=ingredient[b], bg="red", font=tkFont.Font(family="comic sans ms", size =20),bd=10,relief="ridge", anchor=N)
+                    ig_label.grid(row=i, column=ig)
+                    ingredient_labels_list[ingredient[b]]=ig_label
+
+                w1 = Canvas(frame2, width=20, height=20,background="red")
+                oval = w1.create_oval(6,6,16,16, fill='green')
+                w1.grid(row=i,column=0)
+
+                client_obj=DisplayClient(w1,oval,client_label,food_label,ingredient_labels_list)
+                # Thread(target=self.client_socket_thr, args=(food,ingredient,"Client_{}".format(id),client_obj)).start()
+                # sleep(.01)
+            except Exception as e:
+                print "Exception:",e
+                print "Too many clients and producers combined to handle."
+                print "Stopping at client:",id
+                break
+            id += 1
+        print "{{{{{Finishing making",self.comsumer_amount,"Consumers}}}}}"
+
+    def client_socket_thr(self,food,recipe_list,c_n,client_obj):
+        '''
+
+        :param x: client name changing
+        :param c_n: client name
+        :return:
+        '''
+        # buffer_server = ("192.168.1.141",5007)
+        buffer_server = ("192.168.1.141",5007)
+        # buffer_server = ("10.0.0.7",5007)
+
+        s = socket.socket()
+        while True:
+            try:
+                s.connect(buffer_server)#request a connection with the listening server
+                break
+            except socket.error as error:
+                print "Attempting to reconnect"
+                s.close()
+                s=socket.socket()
+        # print c_n,"Connected to:->",buffer_server
+        # print c_n,"Sending:->",str_list
+
+        #Mabey put try catch arround all of this TODO
+        lock.acquire()
+        print c_n,"Food:->",food,": Recipe_list:->",recipe_list
+        lock.release()
+        for i in recipe_list:
+            lock.acquire()
+            print ">>>>",c_n,"Sending:->",i
+            lock.release()
+            s.send(i)
+
+            ####
+            # CAREFUL COULD HAVE TO DO SOME TYPE OF WAITING TO MAKE SURE THE TCP CONNECTION DOESNT CLOSE BECAUSE ITS WAITING
+            # ON A PRODUCER TO PRODUCE SOMETHING INTO THE QUEUE. IT MIGHT BE TOO LONG.
+            ####
+            picture = s.recv(1024)
+            if not picture:
+                # print c_n, "Stopped receiving....."
+                continue
+            else:
+                update_gui(picture)#finish it later TODO!!!
+                lock.acquire()
+                print "<<<<",c_n, "Received:->",picture
+                lock.release()
+        try:
+            print ">>>>",c_n,"Sending:->'Done'"
+            s.send("Done")        # print c_n,"Received:->",received
+            s.close()
+        except socket.error as error:
+            print "{"+error+"}","Wasn't able to send 'Done' because lost connection"
 
 
     def populate_frame(self,frame2,n):

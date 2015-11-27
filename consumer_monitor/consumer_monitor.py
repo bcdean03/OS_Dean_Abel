@@ -10,17 +10,17 @@ import re
 import tkFont
 from PIL import Image, ImageTk
 from change_label_color import DisplayClient
-
+from gui_abean import AbeanGui
 lock = RLock()
 
 
-def main():
+def main(consumer_num,producer_num,buffer_size):
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
-    consumer_num = 500
-    producer_num = 250
-    buffer_size = 16
+    # consumer_num = 500
+    # producer_num = 250
+    # buffer_size = 16
 
     # s = socket.socket()
     # s.connect(("192.168.1.141",5002))#request a connection with the listening server
@@ -49,7 +49,7 @@ def main():
     # finally:
     print "!!CLOSING!!"
     s.close()
-    return consumer_num
+    # return consumer_num
 
 
 def client_socket(food,recipe_list,c_n):
@@ -156,10 +156,11 @@ def consumers(consumer_num):
     #     print "Trying to to m"
     #     exit(1)
 
-if __name__ == '__main__':
-    root = Tk()
-    consumers(main())
-    root.mainloop()
+# if __name__ == '__main__':
+#     root = Tk()
+#     AbeanGui(root).start()
+#     # consumers(main())
+#     root.mainloop()
 
     # consumers(10)
 
