@@ -110,7 +110,7 @@ class AbeanGui(Thread):
         # print self.comsumer_amount
         # print self.producer_amount
         # print self.buffer_amount
-        self.main2(self.comsumer_amount,self.producer_amount,self.buffer_amount,self.root)
+        self.main()
 
         self.color="green"
         canvas = Canvas(self.root, borderwidth=0, background="blue",width=700,height=700)
@@ -128,7 +128,7 @@ class AbeanGui(Thread):
         frame.bind("<Configure>", lambda event, canvas=canvas: self.onFrameConfigure(canvas))
         self.consumers(frame)
         # self.populate_frame(frame,100)
-    def main2(self,consumer_num,producer_num,buffer_size,root):
+    def main(self):
         # consumer_num = raw_input("How many consumers do you want?")
         # producer_num = raw_input("How many producers do you want to produce?")
         # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
@@ -146,9 +146,9 @@ class AbeanGui(Thread):
         try:
             s = socket.socket()
             # s.connect(("192.168.1.141",5002))#request a connection with the listening server
-            s.connect(("192.168.1.141",5002))#request a connection with the listening server
+            s.connect(("192.5168.1.141",5002))#request a connection with the listening server
             # s.connect(("10.0.0.7",5002))#request a connection with the listening server
-            str_of_list= "%s %s"%(producer_num,buffer_size)
+            str_of_list= "%s %s"%(self.producer_num,self.buffer_size)
             s.send(str_of_list)
             data = s.recv(1024)
             if data != "Ready...":
