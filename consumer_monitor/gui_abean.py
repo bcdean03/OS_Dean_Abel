@@ -243,10 +243,10 @@ class AbeanGui(Thread):
             print self.done_counter
             print self.consumer_amount
             self.done_lock.release()
-            s.close()
             if(self.done_counter== int(self.consumer_amount)):
                 # tkinter.messagebox.showinfo("Done Abean",detail="All The {} clients have gotten their Ingredient".format(self.consumer_amount))
                 tkinter.messagebox.showinfo("Done Abean",detail="All The clients have gotten their Ingredient")
+            s.close()
         except socket.error as error:
             print "{"+error+"}","Wasn't able to send 'Done' because lost connection"
 
