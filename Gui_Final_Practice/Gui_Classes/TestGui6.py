@@ -115,10 +115,10 @@ class AbeanGui(Thread):
         # print self.producer_amount
         # print self.buffer_amount
         self.color="green"
-        canvas = Canvas(root, borderwidth=0, background="blue",width=700,height=700)
+        canvas = Canvas(self.root, borderwidth=0, background="blue",width=700,height=700)
         frame = Frame(canvas, background="blue")
-        vsb = Scrollbar(root, orient="vertical", command=canvas.yview)
-        vsb2 = Scrollbar(root, orient="horizontal", command=canvas.xview)
+        vsb = Scrollbar(self.root, orient="vertical", command=canvas.yview)
+        vsb2 = Scrollbar(self.root, orient="horizontal", command=canvas.xview)
         canvas.configure(xscrollcommand=vsb2.set ,yscrollcommand=vsb.set)
         # canvas.configure()
 
@@ -140,20 +140,20 @@ class AbeanGui(Thread):
 
             ingredient=['a','b','c']
             client_label= Label(frame2, text="Client_1->", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            client_label.grid(row=2, column=4)
+            client_label.grid(row=0, column=4)
             food_label= Label(frame2, text="Burger:", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-            food_label.grid(row=2, column=5)
+            food_label.grid(row=0, column=5)
             ingredient_labels_list={}
             ig=5
             for i in xrange(len(ingredient)):
                 ig+=1
                 ig_label= Label(frame2, text=ingredient[i], bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-                ig_label.grid(row=2, column=ig)
+                ig_label.grid(row=0, column=ig)
                 ingredient_labels_list[ingredient[i]]=ig_label
 
             w1 = Canvas(frame2, width=20, height=20,background="red")
             oval = w1.create_oval(6,6,16,16, fill='green')
-            w1.grid(row=2,column=0)
+            w1.grid(row=0,column=0)
 
             self.client_obj=DisplayClient(w1,oval,client_label,food_label,ingredient_labels_list)#canvas,oval,clientName,food,ingredient
 

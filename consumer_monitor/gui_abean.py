@@ -57,11 +57,6 @@ class AbeanGui(Thread):
         else:
             tkinter.messagebox.showinfo("!!Error!!",detail="One of the entries is empty")
 
-
-        # name ="Thanks for the click"+ yourName.get()
-        # labelText.set(name)
-        # yourName.delete(0,END)
-        # yourName.insert(0,"My name is Abel")
         return
 
     def welcome_screen(self):
