@@ -141,7 +141,7 @@ class AbeanGui(Thread):
                 label1.grid(row=row, column=4)
 
 if __name__ == '__main__':
-
+ #AAAAAAAAAAAAAAA
     root = Tk()
     AbeanGui(root).start()
     root.mainloop()
