@@ -143,15 +143,15 @@ class AbeanGui(Thread):
                 food,ingredient = get_food_and_recipe(create_recipe_dictionary())
 
                 client_label= Label(frame2, text="Client_{} ->".format(id+1), bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-                client_label.grid(row=i, column=4)
+                client_label.grid(row=i, column=4,sticky=W+E+N+S)
                 food_label= Label(frame2, text=food+":", bg="red", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
-                food_label.grid(row=i, column=5)
+                food_label.grid(row=i, column=5,sticky=W+E+N+S)
                 ingredient_labels_list={}
                 ig=5
                 for b in xrange(len(ingredient)):
                     ig+=1
                     ig_label= Label(frame2, text=ingredient[b], bg="red", font=tkFont.Font(family="comic sans ms", size =20),bd=10,relief="ridge", anchor=N)
-                    ig_label.grid(row=i, column=ig)
+                    ig_label.grid(row=i, column=ig, sticky=W+E+N+S)
                     ingredient_labels_list[ingredient[b]]=ig_label
 
                 w1 = Canvas(frame2, width=20, height=20,background="red")
