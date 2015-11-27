@@ -129,7 +129,7 @@ class AbeanGui(Thread):
 
                 client_label= Label(frame2, text="Client_{} ->".format(id+1), bg="red", font=tkFont.Font(family="comic sans ms", size =20),bd=10,relief="ridge", anchor=N)
                 client_label.grid(row=i, column=4,sticky=W+E+N+S)
-                food_label= Label(frame2, text=food+":", bg="red", font=tkFont.Font(family="comic sans ms", size =20),bd=10,relief="ridge", anchor=N)
+                food_label= Label(frame2, text=food+":",fg="white", bg="red", font=tkFont.Font(family="comic sans ms", size =20),bd=10,relief="ridge", anchor=N)
                 food_label.grid(row=i, column=5,sticky=W+E+N+S)
                 ingredient_labels_list = {}
                 ig=5
