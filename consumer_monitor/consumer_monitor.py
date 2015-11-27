@@ -10,11 +10,11 @@ import re
 import tkFont
 from PIL import Image, ImageTk
 from change_label_color import DisplayClient
-from gui_abean import AbeanGui
+# from gui_abean import AbeanGui
 lock = RLock()
 
 
-def main(consumer_num,producer_num,buffer_size,root):
+def main():
     # consumer_num = raw_input("How many consumers do you want?")
     # producer_num = raw_input("How many producers do you want to produce?")
     # buffer_size = raw_input("What is the size of the buffer you want to restrict the producers to produce?")
@@ -34,8 +34,8 @@ def main(consumer_num,producer_num,buffer_size,root):
         # s.connect(("192.168.1.141",5002))#request a connection with the listening server
         s.connect(("192.168.1.141",5002))#request a connection with the listening server
         # s.connect(("10.0.0.7",5002))#request a connection with the listening server
-        str_of_list= "%s %s"%(producer_num,buffer_size)
-        s.send(str_of_list)
+        # str_of_list= "%s %s"%(producer_num,buffer_size)
+        # s.send(str_of_list)
         data = s.recv(1024)
         if data != "Ready...":
             print "Error happened"
@@ -45,7 +45,7 @@ def main(consumer_num,producer_num,buffer_size,root):
     except socket.error as error:
         print "{"+str(error)+"}","Wasn't able to send 'Done' because lost connection"
         s.close()
-        root.destroy()
+        # root.destroy()
         exit(0)
     # finally:
     print "!!CLOSING!!"
@@ -157,8 +157,8 @@ def consumers(consumer_num):
     #     print "Trying to to m"
     #     exit(1)
 
-# if __name__ == '__main__':
-#     root = Tk()
+if __name__ == '__main__':
+   main()
 #     AbeanGui(root).start()
 #     # consumers(main())
 #     root.mainloop()
