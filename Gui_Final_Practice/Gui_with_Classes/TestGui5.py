@@ -20,6 +20,12 @@ class AbeanGui(Thread):
     def run(self):
         # self.welcome_screen()
         self.cooking_screen()
+        while True:
+            c=raw_input("Enter Color of label:")
+            self.label.config(bg=c)
+            c2=raw_input("Enter Color of oval:")
+            self.w1.itemconfig(self.oval,fill=c2)
+
 
         # cooking_screen()
         # self.root.protocol("WM_DELETE_WINDOW", self.callback)
@@ -109,13 +115,15 @@ class AbeanGui(Thread):
 
         frame.bind("<Configure>", lambda event, canvas=canvas: self.onFrameConfigure(canvas))
         self.populate_frame(frame,100)
-        while True:
-            c=raw_input("Enter Color")
-            self.label.config(bg=c)
+
 
     def populate_frame(self,frame2,n):
             self.label= Label(frame2, text="BONE", bg="green", font=tkFont.Font(family="comic sans ms", size =40),bd=10,relief="ridge", anchor=N)
             self.label.grid(row=2, column=4)
+            self.w1 = Canvas(frame2, width=20, height=20,background="red")
+            self.oval = self.w1.create_oval(6,6,16,16, fill='green')
+            self.w1.grid(row=2,column=0)
+
      # for row in range(n):
      #        # label1 = Label(frame2, text="Hello",bd=10,relief="ridge", anchor=N)
      #        # label1.grid(row=row, column=1)
