@@ -4,6 +4,13 @@ from random import choice
 from threading import Thread,RLock
 from time import sleep
 import sys
+from Tkinter import *
+import tkinter.messagebox
+import re
+import tkFont
+from PIL import Image, ImageTk
+from change_label_color import DisplayClient
+
 lock = RLock()
 
 
@@ -150,7 +157,9 @@ def consumers(consumer_num):
     #     exit(1)
 
 if __name__ == '__main__':
+    root = Tk()
     consumers(main())
+    root.mainloop()
 
     # consumers(10)
 
