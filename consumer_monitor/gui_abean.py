@@ -14,6 +14,7 @@ from consumer_monitor import *
 
 class AbeanGui(Thread):
     consumer_amount = -1
+
     def __init__(self,master):
         Thread.__init__(self)
         self.root = master
@@ -23,8 +24,6 @@ class AbeanGui(Thread):
 
     def run(self):
         self.welcome_screen()
-
-
 
     def change_label(self):
         if(self.entry_comsumer.get() is not "" and
@@ -84,9 +83,6 @@ class AbeanGui(Thread):
         canvas.configure(scrollregion=canvas.bbox("all"))
 
     def cooking_screen(self):
-        # print self.consumer_amount
-        # print self.producer_amount
-        # print self.buffer_amount
         self.main()
 
         self.root.geometry("{0}x{1}+0+0".format(self.root.winfo_screenwidth(), self.root.winfo_screenheight()))
