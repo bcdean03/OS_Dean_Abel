@@ -1,10 +1,13 @@
 __author__ = 'abelamadou'
 __author__ = 'abelamadou'
 __author__ = 'Dean'
-# from threading import Thread
+from threading import Thread
 from Tkinter import *
 import tkinter.messagebox
-from consumer_monitor import *
+import socket
+import tkFont
+from change_label_color import DisplayClient
+from consumer_monitor import get_food_and_recipe,create_recipe_dictionary
 
 
 
