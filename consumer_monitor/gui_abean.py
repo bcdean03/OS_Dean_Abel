@@ -112,7 +112,8 @@ class AbeanGui(Thread):
         # print self.buffer_amount
         self.main()
 
-        canvas = Canvas(self.root, borderwidth=0, background="blue",width=700,height=700)
+        self.root.geometry("{0}x{1}+0+0".format(self.root.winfo_screenwidth(), self.root.winfo_screenheight()))
+        canvas = Canvas(self.root, borderwidth=0, background="blue")
         frame = Frame(canvas, background="blue")
         vsb = Scrollbar(self.root, orient="vertical", command=canvas.yview)
         vsb2 = Scrollbar(self.root, orient="horizontal", command=canvas.xview)
