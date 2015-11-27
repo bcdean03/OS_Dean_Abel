@@ -1,13 +1,9 @@
 __author__ = 'abelamadou'
 __author__ = 'abelamadou'
 __author__ = 'Dean'
-from threading import Thread
+# from threading import Thread
 from Tkinter import *
 import tkinter.messagebox
-import re
-import tkFont
-from PIL import Image, ImageTk
-from change_label_color import DisplayClient
 from consumer_monitor import *
 
 
@@ -187,11 +183,8 @@ class AbeanGui(Thread):
 
             ingr = s.recv(1024)
             if not ingr:
-                # print c_n, "Stopped receiving....."
                 continue
             else:
-                # self.client_obj.change_label_color( self.client_obj.clientName,a[1])
-                # self.client_obj.change_label_color( self.client_obj.food,a[2])
                 client_obj.change_label_color(client_obj.ingredient[ingr],"green")
                 #lock.acquire()
                 #print "<<<<",c_n, "Received:->",ingr
