@@ -188,8 +188,9 @@ class AbeanGui(Thread):
             if not ingr:
                 continue
             else:
-                l =ingr.split(":")
+                l = ingr.split("*")
                 client_obj.change_label_color(client_obj.ingredient[l[1]],"green")
+                client_obj.change_label_name(client_obj.ingredient[l[1]],l[0]+"\n"+l[1])
                 #lock.acquire()
                 #print "<<<<",c_n, "Received:->",ingr
                 #lock.release()
