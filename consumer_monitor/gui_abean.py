@@ -197,8 +197,6 @@ class AbeanGui(Thread):
             client_obj.change_label_color(client_obj.food,"purple")
             self.done_lock.acquire()
             self.done_counter+=1
-            print self.done_counter
-            print self.consumer_amount
             self.done_lock.release()
             # if(self.done_counter== int(self.consumer_amount)):
             #     tkinter.messagebox.showinfo("Done Abean",detail="All The clients have gotten their Ingredient")
