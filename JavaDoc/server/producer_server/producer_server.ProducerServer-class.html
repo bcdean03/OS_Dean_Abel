@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>producer_server.ProducerServer</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="producer_server-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="producer_server-module.html">Module&nbsp;producer_server</a> ::
+        Class&nbsp;ProducerServer
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="producer_server.ProducerServer-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class ProducerServer</h1><p class="nomargin-top"><span class="codelink"><a href="producer_server-pysrc.html#ProducerServer">source&nbsp;code</a></span></p>
+<p>This class acts as a server for the ingredients produced by the 
+  producers. Each client will receive a thread for the socket and exchange 
+  infromation. The server will serve the client and the server will receive
+  requests from the client. The producers will randomly generate items to 
+  the dictionary_food queues inside of it.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="producer_server.ProducerServer-class.html#user_main_socket" class="summary-sig-name">user_main_socket</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      This method creates a socket and listens for a connection from the 
+      main user.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.user_main_socket">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="producer_server.ProducerServer-class.html#setup_bf" class="summary-sig-name">setup_bf</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bf_size</span>)</span><br />
+      This method creates a synchronized Queue for each ingredient in the 
+      list to the dictionary and sets the size of them as the number passed
+      in from the main user.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.setup_bf">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="producer_server.ProducerServer-class.html#start_listening" class="summary-sig-name">start_listening</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      This method starts listening for the clients who want to get items 
+      from the Abean grocery store.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.start_listening">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="producer_server.ProducerServer-class.html#client_threaded_socket" class="summary-sig-name">client_threaded_socket</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">client</span>)</span><br />
+      This method is a thread that runs the connection between the client 
+      and the server.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.client_threaded_socket">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="producer_server.ProducerServer-class.html#setup_all" class="summary-sig-name">setup_all</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">user_info</span>)</span><br />
+      This method sets up all the producers threads that the main user 
+      specified.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.setup_all">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="dictionary_food"></a><span class="summary-name">dictionary_food</span> = <code title="{}"><code class="variable-group">{</code><code class="variable-group">}</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="user_main_socket"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">user_main_socket</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.user_main_socket">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This method creates a socket and listens for a connection from the 
+  main user. This method receives the buffer size and the amount of 
+  producers to produce into their respective items queue. This listens on a
+  different port then the sockets created below. :return: N/A</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setup_bf"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setup_bf</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">bf_size</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.setup_bf">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This method creates a synchronized Queue for each ingredient in the 
+  list to the dictionary and sets the size of them as the number passed in 
+  from the main user. :param bf_size: This is the size of the buffer passed
+  in from set up all. :return:</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="start_listening"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">start_listening</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.start_listening">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This method starts listening for the clients who want to get items 
+  from the Abean grocery store. This socket is listening on another port, 
+  not the one the first user used. It accepts up 1000 clients at a time, 
+  but we are limited due to our computers limitations. Exceptions have been
+  caught. This creates a client threaded socket every time it receives 
+  another connection :return:</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="client_threaded_socket"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">client_threaded_socket</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">client</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.client_threaded_socket">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This method is a thread that runs the connection between the client 
+  and the server. This receives an ingredient from the client and then 
+  attempts to get the item out of the dictionary where the items are being 
+  stored in queues which are values for each key. If the queue is empty 
+  then the thread will wait until a producer has put an item in that queue.
+  When the thread has taken the item out of the queue, then it will send it
+  back to the client. This will continue until the client tells the server 
+  its completed its list of items for the food they want to create by 
+  sending &quot;Done&quot;. The queues take care of synchronization. :param
+  client: :return:</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="setup_all"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setup_all</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">user_info</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="producer_server-pysrc.html#ProducerServer.setup_all">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This method sets up all the producers threads that the main user 
+  specified. It calls set_up_bf that sets up the dictionary that holds all 
+  the items that will be produced by the producers. They all receive names 
+  so later in the gui we can figure out which producer produced the item 
+  that the client received. Exceptions are caught. :param user_info: 
+  :return:</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="producer_server-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Nov 27 20:19:51 2015
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
