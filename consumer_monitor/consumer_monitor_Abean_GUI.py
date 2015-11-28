@@ -96,7 +96,7 @@ class ConsumerMonitorAbeanGui(Thread):
         self.entry_producer.grid(row=1,column=1,sticky=E)
         self.entry_buffer_size.grid(row=2,column=1,sticky=E)
 
-        self.button1 = Button(self.root, text="Done",command=self.change_screen())
+        self.button1 = Button(self.root, text="Done",command=self.change_screen)
         self.button1.grid(row=4,column=1,sticky=W+E+N+S)
 
 
