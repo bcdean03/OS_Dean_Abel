@@ -1,5 +1,4 @@
-__author__ = 'Dean Bailey'
-__author__ = 'abelamadou'
+__author__ = 'abelamadou Dean Bailey'
 
 from threading import Thread
 from random import choice, randint
