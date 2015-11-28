@@ -4,6 +4,13 @@ from random import choice, randint
 from time import sleep
 
 class Producer(Thread):
+    '''
+    This class is used to generate all the producer threads. Each thread will receive the dictionary of items that has the
+    synchronized Queues in it to produce a random item and put them in the queues relative to the keys. The producer threads
+    will randomly select an item/key from the dictionary and try to produce to its relative queue. If the queue isnt full they produce
+    an item to it. If they succeed they sleep for a random time between 0-5 seconds. If the buffer size specified by the
+    user is greater then 15 and all of the queues inside the dictionary of items are full then each producer will sleep for 15 seconds.
+    '''
     def __init__(self,dictionary,name):
         Thread.__init__(self,name=name)
         self.dictionary_food = dictionary

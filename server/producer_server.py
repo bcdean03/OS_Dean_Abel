@@ -11,6 +11,12 @@ lock = RLock()
 
 
 def user_main_socket():
+    '''
+    This method creates a socket and listens for a connection from the main user. This method receives
+    the buffer size and the amount of producers to produce into their respective items queue. This listens on a different
+    port then the sockets created below.
+    :return: N/A
+    '''
     # addr= ("192.168.1.141", 5002)
     addr= ("192.168.1.141", 5002)
     # addr= ("10.0.0.7", 5002)
@@ -21,7 +27,8 @@ def user_main_socket():
     client,client_addr = sock.accept()
     print "Made connection with client --->",client_addr
     user_info_in = client.recv(1024)
-    user_info_list = convert_input_to_list(user_info_in)
+    # user_info_list = convert_input_to_list(user_info_in)
+    user_info_list = user_info_in.split(' ')
     setup_all(user_info_list)
     print "!!!Going to send Ready!!!"
     client.send("Ready...")
@@ -31,6 +38,12 @@ def user_main_socket():
 
 
 def setup_bf(bf_size):
+    '''
+    This method creates a synchronized Queue for each ingredient in the list to the dictionary and sets the size of them
+    as the number passed in from the main user.
+    :param bf_size: This is the size of the buffer passed in from set up all.
+    :return:
+    '''
     list = ["Apple", "Banana", "Bread", "Salt", "Flour", "Cinnamon", "Pepperoni", "Oil",
             "Eggs", "Sugar", "Raisin", "Baking Soda", "Butter", "Yeast", "Water",
             "Banana", "Apple", "Pumpkin", "Wheat Flour", "Honey", "Chocolate Chips",
@@ -41,11 +54,14 @@ def setup_bf(bf_size):
         dictionary_food[i]= Queue(maxsize=bf_size)
 
 
-def convert_input_to_list(input_string):
-    return input_string.split(' ')
-
-
 def start_listening():
+    '''
+    This method starts listening for the clients who want to get items from the Abean grocery store. This
+    socket is listening on another port, not the one the first user used. It accepts up 1000 clients at a time,
+    but we are limited due to our computers limitations. Exceptions have been caught. This creates a client threaded socket
+    every time it receives another connection
+    :return:
+    '''
     # addr= ("192.168.1.141", 5007)
     addr= ("192.168.1.141", 5007)
     # addr= ("10.0.0.7", 5007)
@@ -57,7 +73,7 @@ def start_listening():
         print "Waiting for connection from clients..."
         client, client_addr = sock.accept()
         try:
-            Thread(target=client_threaded_socket, args=(client, client_addr)).start()
+            Thread(target=client_threaded_socket, args=(client,)).start()
             sleep(.1)
             count+=1
         except Exception as e:
@@ -68,13 +84,23 @@ def start_listening():
 
 
 
-def client_threaded_socket(client, client_address):
+def client_threaded_socket(client):
+    '''
+    This method is a thread that runs the connection between the client and the server. This receives an ingredient
+    from the client and then attempts to get the item out of the dictionary where the items are being stored in queues
+    which are values for each key. If the queue is empty then the thread will wait until a producer has put an item in that queue.
+    When the thread has taken the item out of the queue, then it will send it back to the client. This will continue until the client
+    tells the server its completed its list of items for the food they want to create by sending "Done". The queues take care of synchronization.
+    :param client:
+    :return:
+    '''
     try:
         ingredient_item = client.recv(1024)
         while ingredient_item!="Done":
             lock.acquire()
             print">>>> Requested ingredient:->",ingredient_item
             lock.release()
+            print "ingredient item:",ingredient_item
             p_ingredient_item = dictionary_food[ingredient_item].get()
             lock.acquire()
             print"<<<< Sending ingredient:->",p_ingredient_item
@@ -89,6 +115,14 @@ def client_threaded_socket(client, client_address):
         client.close()
 
 def setup_all(user_info):
+    '''
+    This method sets up all the producers threads that the main user specified. It calls set_up_bf that
+    sets up the dictionary that holds all the items that will be produced by the producers. They all receive
+    names so later in the gui we can figure out which producer produced the item that the client received.
+    Exceptions are caught.
+    :param user_info:
+    :return:
+    '''
     if len(user_info) == 2:
         num_producers = int(user_info[0])
         setup_bf(int(user_info[1]))

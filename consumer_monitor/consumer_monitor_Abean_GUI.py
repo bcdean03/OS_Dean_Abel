@@ -7,11 +7,10 @@ import tkinter.messagebox
 import socket
 import tkFont
 from change_label_color import DisplayClient
-from consumer_monitor import get_food_and_recipe,create_recipe_dictionary
+from recipe_module import get_food_and_recipe,create_recipe_dictionary
 
 
-
-class AbeanGui(Thread):
+class ConsumerMonitorAbeanGui(Thread):
     # consumer_amount = -1
 
     def __init__(self,master):

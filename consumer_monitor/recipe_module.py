@@ -1,8 +1,8 @@
 from random import choice
 
+
+# Create a dictionary of recipes and there ingredient list
 def create_recipe_dictionary():
-    # goodies_dictionary = {"Banana Bread": ["Banana", "Bread"],
-    #                       "Apple Bread": ["Apple", "Bread"]} #"Bread", "Apple", "Banana"
     goodies_dictionary = {
     "Banana Bread":["Banana","Eggs","Salt","Flour","Sugar","Baking Soda","Butter","Yeast","Water"],
     "Apple Bread":["Apple","Baking Soda","Salt","Flour","Eggs","Sugar","Butter","Yeast","Water"],
@@ -19,6 +19,7 @@ def create_recipe_dictionary():
     return goodies_dictionary
 
 
+# Get a random food item to get the ingredients
 def get_food_and_recipe(goodies):
     food = choice(goodies.keys())
     recipe_list = goodies[food]
