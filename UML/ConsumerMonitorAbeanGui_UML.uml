@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#/Users/abelamadou/Desktop/OS_Dean_Abel/consumer_monitor/consumer_monitor_Abean_GUI.py</OriginalElement>
+  <nodes>
+    <node x="654.5" y="0.0">_abcoll.Hashable</node>
+    <node x="465.5" y="1706.0">consumer_monitor.consumer_monitor_Abean_GUI.ConsumerMonitorAbeanGui</node>
+    <node x="609.0" y="600.0">threading._Verbose</node>
+    <node x="0.0" y="746.0">threading.Thread</node>
+    <node x="488.0" y="146.0">object</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="threading.Thread" target="threading._Verbose">
+      <point x="0.0" y="-455.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="object" target="_abcoll.Hashable">
+      <point x="0.0" y="-202.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="threading._Verbose" target="object">
+      <point x="0.0" y="-48.0" />
+      <point x="0.0" y="202.0" />
+    </edge>
+    <edge source="consumer_monitor.consumer_monitor_Abean_GUI.ConsumerMonitorAbeanGui" target="threading.Thread">
+      <point x="0.0" y="-235.0" />
+      <point x="0.0" y="455.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="747.5" y="1908.0" />
+  <SelectedNodes>
+    <node>object</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+</Diagram>
+
