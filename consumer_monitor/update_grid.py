@@ -1,4 +1,5 @@
 __author__ = 'abelamadou'
+__author__ = 'Dean Bailey'
 from Tkinter import *
 
 class DisplayClient:

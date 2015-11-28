@@ -1,4 +1,5 @@
-__author__ = 'Dean, Abel'
+__author__ = 'abelamadou'
+__author__ = 'Dean Bailey'
 import socket
 from producer_thread import *
 from Queue import Queue

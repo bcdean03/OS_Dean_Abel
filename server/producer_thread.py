@@ -1,4 +1,6 @@
-__author__ = 'Dean, Abel'
+__author__ = 'Dean Bailey'
+__author__ = 'abelamadou'
+
 from threading import Thread
 from random import choice, randint
 from time import sleep

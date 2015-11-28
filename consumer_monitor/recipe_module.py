@@ -1,3 +1,6 @@
+__author__ = 'abelamadou'
+__author__ = 'Dean Bailey'
+
 from random import choice
 
 

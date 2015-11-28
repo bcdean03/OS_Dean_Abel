@@ -1,6 +1,5 @@
+__author__ = 'Dean Bailey'
 __author__ = 'abelamadou'
-__author__ = 'abelamadou'
-__author__ = 'Dean'
 from threading import Thread
 from Tkinter import *
 import tkinter.messagebox
