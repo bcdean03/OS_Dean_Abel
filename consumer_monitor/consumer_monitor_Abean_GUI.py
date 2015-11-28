@@ -6,11 +6,15 @@ from Tkinter import *
 import tkinter.messagebox
 import socket
 import tkFont
-from change_label_color import DisplayClient
+from update_grid import DisplayClient
 from recipe_module import get_food_and_recipe,create_recipe_dictionary
 
 
 class ConsumerMonitorAbeanGui(Thread):
+    '''
+    This class runs the first user client socket, the simulated client sockets, and the GUI. As each
+    client thread is run, it updates the GUI via change_
+    '''
     # consumer_amount = -1
 
     def __init__(self,master):
@@ -76,7 +80,8 @@ class ConsumerMonitorAbeanGui(Thread):
         self.button1 = Button(self.root, text="Done",command=self.change_label)
         self.button1.grid(row=4,column=1,sticky=W+E+N+S)
 
-    def onFrameConfigure(self,canvas):
+
+    def configure_canvas(self,canvas):
         '''Reset the scroll region to encompass the inner frame'''
         canvas.configure(scrollregion=canvas.bbox("all"))
 
@@ -96,7 +101,7 @@ class ConsumerMonitorAbeanGui(Thread):
         canvas.pack(side="left", fill="both", expand=True)
         canvas.create_window((4,4), window=frame, anchor="nw")
 
-        frame.bind("<Configure>", lambda event, canvas=canvas: self.onFrameConfigure(canvas))
+        frame.bind("<Configure>", lambda event, canvas=canvas: self.configure_canvas(canvas))
         self.consumers(frame)
 
     def main(self):
