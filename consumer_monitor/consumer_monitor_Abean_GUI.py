@@ -214,6 +214,6 @@ class ConsumerMonitorAbeanGui(Thread):
 if __name__ == '__main__':
 
     root = Tk()
-    AbeanGui(root).start()
+    ConsumerMonitorAbeanGui(root).start()
     root.mainloop()
 
