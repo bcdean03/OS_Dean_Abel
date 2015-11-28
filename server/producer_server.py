@@ -10,6 +10,12 @@ lock = RLock()
 
 
 class ProducerServer:
+    '''
+    This class acts as a server for the ingredients produced by the producers.
+    Each client will receive a thread for the socket and exchange infromation. The server
+    will serve the client and the server will receive requests from the client. The producers
+    will randomly generate items to the dictionary_food queues inside of it.
+    '''
     dictionary_food={}
     def user_main_socket(self):
         '''
