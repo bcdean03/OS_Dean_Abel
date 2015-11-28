@@ -16,7 +16,7 @@ def create_recipe_dictionary():
     "Cinnamon Bread":["Cinnamon","Water","Salt","Flour","Eggs","Sugar","Baking Soda","Butter","Yeast"],
     "Pizza":["Pepperoni","Salt","Flour","Eggs","Yeast","Water","Oil","Sauce","Cheese"],
     "Mac and Cheese":["Cheese","Noodles","Milk","Water"],
-    "Cheese burger":["Hamburger","Cheese","Lettuce"],
+    "Cheese Burger":["Hamburger","Cheese","Lettuce"],
     "Spaghetti":["Noodles","Cheese","Hamburger","Sauce"]}
     return goodies_dictionary
 
