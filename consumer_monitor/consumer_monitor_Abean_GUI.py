@@ -12,12 +12,18 @@ from recipe_module import get_food_and_recipe,create_recipe_dictionary
 
 class ConsumerMonitorAbeanGui(Thread):
     '''
-    This class runs the first user client socket, the simulated client sockets, and the GUI. As each
-    client thread is run, it updates the GUI via change_
+    This class manages the user client socket, the simulated client sockets, and the GUI. As each
+    client thread is run, it updates the GUI via update_grid objects which are linked to specific rows and
+    clients. The GUI is updated every time the client receives their requested item from the server.
     '''
     # consumer_amount = -1
 
     def __init__(self,master):
+        '''
+        intitlize GUI with a title
+        :param master: This is the tkinter window
+        :return:
+        '''
         Thread.__init__(self)
         self.root = master
         self.root.title("Abean Groceries")
@@ -27,7 +33,15 @@ class ConsumerMonitorAbeanGui(Thread):
     def run(self):
         self.welcome_screen()
 
-    def change_label(self):
+    def change_screen(self):
+        '''
+        This method is the method that is called when the user presses the "Done" button. It has a few checks
+        based on whether the first user inputs too big of numbers that out did the limitations of our computers
+        for the number of producers and consumers, or if they didnt input a correct string, including empty entries.
+        This method also removes all the widgets created in the root and switches it too the next part of the GUI. Which
+        is to update the clients requests and information received back from the server.
+        :return:
+        '''
         if(self.entry_comsumer.get() is not "" and
                        self.entry_producer.get() is not ""and
                        self.entry_buffer_size.get()is not ""):
@@ -61,6 +75,11 @@ class ConsumerMonitorAbeanGui(Thread):
         return
 
     def welcome_screen(self):
+        '''
+        This screen is the first GUI that gets popped up to the main user to specify the number of producers, consumers
+        and the buffer size.
+        :return:
+        '''
         self.label_comsumer = Label(self.root,text="Number of Consumer(s)")
         self.label_producer =Label(self.root,text="Number of Producer(s)")
         self.label_buffersize =Label(self.root,text="Buffer Size")
@@ -77,15 +96,23 @@ class ConsumerMonitorAbeanGui(Thread):
         self.entry_producer.grid(row=1,column=1,sticky=E)
         self.entry_buffer_size.grid(row=2,column=1,sticky=E)
 
-        self.button1 = Button(self.root, text="Done",command=self.change_label)
+        self.button1 = Button(self.root, text="Done",command=self.change_screen())
         self.button1.grid(row=4,column=1,sticky=W+E+N+S)
 
 
     def configure_canvas(self,canvas):
-        '''Reset the scroll region to encompass the inner frame'''
+        '''
+        Configure the scroll region to all of the canvas
+        '''
         canvas.configure(scrollregion=canvas.bbox("all"))
 
     def cooking_screen(self):
+        '''
+        This is the method that sets up the second gui screen using a frame inside of a canvas. On that canvas
+        a horizontal and vertical scrollbar was implemented. In that frame we placed a grid which held the information
+        of each client.
+        :return:
+        '''
         self.main()
 
         self.root.geometry("{0}x{1}+0+0".format(self.root.winfo_screenwidth(), self.root.winfo_screenheight()))
@@ -105,6 +132,11 @@ class ConsumerMonitorAbeanGui(Thread):
         self.consumers(frame)
 
     def main(self):
+        '''
+        This method sets up the first socket to excahgne the infromation about how many producers
+        the server should have and the buffer size of each queue
+        :return:
+        '''
         try:
             s = socket.socket()
             s.connect(("192.168.1.141",5002))#request a connection with the listening server
@@ -122,8 +154,22 @@ class ConsumerMonitorAbeanGui(Thread):
             exit(0)
         print "!!CLOSING!!"
         s.close()
-    def consumers(self,frame2):
 
+    def consumers(self,frame2):
+        '''
+        This method creates the DisplayClient object that is contantly getting updated in the gui. These objects are connected
+        to the clients and well as to each row for client information within the gui.
+        Colors:
+        red-> Haven't set nor received the item.
+        green->Sent and received
+        yellow->Sent, but waiting on sever to produce the item
+        orange->sockets closed and client finished
+        purple->got all items for the list
+        green oval-> finished
+        red oval->still in process of getting items
+        :param frame2: This is the frame that contains the grid of client information
+        :return:
+        '''
         print "+++++++Going to make",self.consumer_amount,"Consumers+++++++"
         id = 0
         for i in xrange(int(self.consumer_amount)):
@@ -159,7 +205,10 @@ class ConsumerMonitorAbeanGui(Thread):
 
     def client_socket_thr(self,food,recipe_list,c_n,client_obj):
         '''
-
+        This is the client threads that does the communication between the server and the client. This sends and receives
+        items back and forth. This method also updates the DisplayClient objects which in turn updates the gui
+        to the colors specified here and the method above. It shows the producers who produced the item that
+        each client received from the server as well.
         :param x: client name changing
         :param c_n: client name
         :return:
