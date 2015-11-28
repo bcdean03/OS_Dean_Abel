@@ -3,13 +3,14 @@ import socket
 from producer_thread import *
 from Queue import Queue
 from threading import Thread,RLock
-global dictionary_food
+# global dictionary_food
 from time import sleep
-dictionary_food={}
+# self.dictionary_food={}
 lock = RLock()
 
 
 class ProducerServer:
+    dictionary_food={}
     def user_main_socket(self):
         '''
         This method creates a socket and listens for a connection from the main user. This method receives
@@ -48,10 +49,10 @@ class ProducerServer:
                 "Eggs", "Sugar", "Raisin", "Baking Soda", "Butter", "Yeast", "Water",
                 "Banana", "Apple", "Pumpkin", "Wheat Flour", "Honey", "Chocolate Chips",
                 "Milk", "Noodles", "Hamburger", "Lettuce", "Cheese", "Hamburger", "Sauce"]
-        global dictionary_food
+        # global self.dictionary_food
 
         for i in list:
-            dictionary_food[i]= Queue(maxsize=bf_size)
+            self.dictionary_food[i]= Queue(maxsize=bf_size)
 
 
     def start_listening(self):
@@ -101,7 +102,7 @@ class ProducerServer:
                 print">>>> Requested ingredient:->",ingredient_item
                 lock.release()
                 print "ingredient item:",ingredient_item
-                p_ingredient_item = dictionary_food[ingredient_item].get()
+                p_ingredient_item = self.dictionary_food[ingredient_item].get()
                 lock.acquire()
                 print"<<<< Sending ingredient:->",p_ingredient_item
                 lock.release()
@@ -134,8 +135,8 @@ class ProducerServer:
             else:
                 for i in xrange(0, num_producers):
                     try:
-                        Producer(dictionary_food,"Producer_{}:".format(i+1)).start()
-                        # Producer(dictionary_food,"Producer_{}".format(i+1)).start()
+                        Producer(self.dictionary_food,"Producer_{}:".format(i+1)).start()
+                        # Producer(self.dictionary_food,"Producer_{}".format(i+1)).start()
                     except Exception as e:
                         print "Exception:",e
                         print "Cant handle that many producers... Too poor to pay them all!"
