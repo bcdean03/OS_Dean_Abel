@@ -12,14 +12,29 @@ class DisplayClient:
         self.food=food
         self.ingredient=ingredient
 
-    # Change the label color in the object to update the GUI
     def change_label_color(self,l_obj,color):
+        '''
+        Change the label color in the object to update the GUI
+        :param l_obj:
+        :param color:
+        :return:
+        '''
         l_obj.config(bg=color)
 
-    # Change the label color in the object to update the GUI
     def change_label_name(self,l_obj,name):
+        '''
+        Change the label color in the object to update the GUI
+        :param l_obj:
+        :param name:
+        :return:
+        '''
         l_obj.config(text=name)
 
-    # Change the label color in the object to update the GUI
+
     def change_oval(self,color):
+        '''
+        Change the label color in the object to update the GUI
+        :param color:
+        :return:
+        '''
         self.canvas.itemconfig(self.oval,fill=color)
