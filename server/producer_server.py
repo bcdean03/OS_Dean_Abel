@@ -25,8 +25,8 @@ class ProducerServer:
         :return: N/A
         '''
         # addr= ("192.168.1.141", 5002)
-        addr= ("192.168.1.193", 5002)
-        # addr= ("10.0.0.7", 5002)
+        # addr= ("192.168.1.193", 5002)
+        addr= ("10.0.0.9", 5002)
         sock = socket.socket()
         sock.bind(addr)
         sock.listen(1)
@@ -53,8 +53,8 @@ class ProducerServer:
         '''
         list = ["Apple", "Banana", "Bread", "Salt", "Flour", "Cinnamon", "Pepperoni", "Oil",
                 "Eggs", "Sugar", "Raisin", "Baking Soda", "Butter", "Yeast", "Water",
-                "Banana", "Apple", "Pumpkin", "Wheat Flour", "Honey", "Chocolate Chips",
-                "Milk", "Noodles", "Hamburger", "Lettuce", "Cheese", "Hamburger", "Sauce"]
+                "Pumpkin", "Wheat Flour", "Honey", "Chocolate Chips",
+                "Milk", "Noodles", "Hamburger", "Lettuce", "Cheese", "Sauce"]
         # global self.dictionary_food
 
         for i in list:
@@ -70,8 +70,8 @@ class ProducerServer:
         :return:
         '''
         # addr= ("192.168.1.141", 5007)
-        addr= ("192.168.1.193", 5007)
-        # addr= ("10.0.0.7", 5007)
+        # addr= ("192.168.1.193", 5007)
+        addr= ("10.0.0.9", 5007)
         sock = socket.socket()
         sock.bind(addr)
         sock.listen(1000)
