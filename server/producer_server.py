@@ -26,7 +26,7 @@ class ProducerServer:
         '''
         # addr= ("192.168.1.141", 5002)
         # addr= ("192.168.1.193", 5002)
-        addr= ("10.50.33.93", 5002)
+        addr= ("10.10.112.136", 5002)
         # addr= ("10.136.139.204", 5002)
         sock = socket.socket()
         sock.bind(addr)
@@ -72,7 +72,7 @@ class ProducerServer:
         '''
         # addr= ("192.168.1.141", 5007)
         # addr= ("192.168.1.193", 5007)
-        addr= ("10.50.33.93", 5007)
+        addr= ("10.10.112.136", 5007)
         # addr= ("10.136.139.204", 5007)
         sock = socket.socket()
         sock.bind(addr)
