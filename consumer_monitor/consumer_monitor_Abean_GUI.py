@@ -137,7 +137,8 @@ class ConsumerMonitorAbeanGui(Thread):
         '''
         try:
             s = socket.socket()
-            s.connect(("10.0.0.9",5002))#request a connection with the listening server
+            s.connect(("10.70.2.156",5002))
+            # s.connect(("10.0.0.9",5002))#request a connection with the listening server
             # s.connect(("192.168.1.193",5002))#request a connection with the listening server
             str_of_list= "%s %s"%(self.producer_amount,self.buffer_amount)
             s.send(str_of_list)
@@ -212,7 +213,8 @@ class ConsumerMonitorAbeanGui(Thread):
         :param c_n: client name
         :return:
         '''
-        buffer_server = ("10.0.0.9",5007)
+        buffer_server = ("10.70.2.156",5007)
+        # buffer_server = ("10.0.0.9",5007)
         # buffer_server = ("192.168.1.193",5007)
 
         s = socket.socket()
