@@ -1,7 +1,8 @@
 __author__ = 'Dean Bailey abelamadou'
 from threading import Thread
 from Tkinter import *
-import tkinter.messagebox
+import tkMessageBox
+import re
 import socket
 import tkFont
 from update_grid import DisplayClient
@@ -63,12 +64,12 @@ class ConsumerMonitorAbeanGui(Thread):
                     self.button1.destroy()
                     self.cooking_screen()
                 else:
-                    tkinter.messagebox.showinfo("!!Error!!",detail="Producer(s) < 2053 : Consumer(s) < 500 : Buffer Size > 0")
+                    tkMessageBox.showinfo("!!Error!!",detail="Producer(s) < 2053 : Consumer(s) < 500 : Buffer Size > 0")
 
             else:
-                tkinter.messagebox.showinfo("!!Error!!",detail="One of your entries contains a letter or wrong symbol, only integers!")
+                tkMessageBox.showinfo("!!Error!!",detail="One of your entries contains a letter or wrong symbol, only integers!")
         else:
-            tkinter.messagebox.showinfo("!!Error!!",detail="One of the entries is empty")
+            tkMessageBox.showinfo("!!Error!!",detail="One of the entries is empty")
 
         return
 
@@ -137,7 +138,7 @@ class ConsumerMonitorAbeanGui(Thread):
         '''
         try:
             s = socket.socket()
-            s.connect(("10.10.112.136",5002))
+            s.connect(("192.168.1.194",5002))
             # s.connect(("10.136.139.204",5002))
             # s.connect(("10.0.0.9",5002))#request a connection with the listening server
             # s.connect(("192.168.1.193",5002))#request a connection with the listening server
@@ -214,7 +215,7 @@ class ConsumerMonitorAbeanGui(Thread):
         :param c_n: client name
         :return:
         '''
-        buffer_server = ("10.10.112.136",5007)
+        buffer_server = ("192.168.1.194",5007)
         # buffer_server = ("10.136.139.204",5007)
         # buffer_server = ("10.0.0.9",5007)
         # buffer_server = ("192.168.1.193",5007)
